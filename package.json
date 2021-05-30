@@ -1,0 +1,21 @@
+{
+    "private": true,
+    "name": "@mcaskill/html-build-attributes",
+    "version": "1.0.0",
+    "description": "Generate a string of HTML attributes.",
+    "license": "MIT",
+    "homepage": "https://github.com/mcaskill/js-html-build-attributes",
+    "repository": "mcaskill/js-html-build-attributes",
+    "author": {
+        "name": "Chauncey McAskill",
+        "email": "chauncey@mcaskill.ca",
+        "homepage": "https://github.com/mcaskill"
+    },
+    "keywords": [
+        "function",
+        "html"
+    ],
+    "engines": {
+        "node": "^12.20.0 || ^14.14.0 || >=16.0.0"
+    }
+}

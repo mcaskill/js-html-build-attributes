@@ -1,5 +1,7 @@
 # html_build_attributes
 
+> Node 12 >= 12.20, Node 14 >= 14.14, Node 16
+
 Generate a string of HTML attributes.
 
 ## Installation
