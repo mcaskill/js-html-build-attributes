@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "./lib",
+        "sourceMap": true,
+        "strict": true,
+        "target": "ES2019"
+    },
+    "include": [
+        "./src"
+    ]
+}
