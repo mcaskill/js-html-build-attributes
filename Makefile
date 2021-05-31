@@ -1,21 +1,17 @@
-NPMPACKAGE := "{\\n    \"type\": \"module\",\\n    \"private\": true\\n}"
-
 build: build-cjs build-esm build-dts
 	@echo "Done"
 
 build-cjs:
-	@echo "Building CommonJS"
-	@rm -rf lib/cjs 2> /dev/null
-	@npx tsc -p tsconfig.cjs.json
-	@echo $(subst module,commonjs,$(NPMPACKAGE)) > lib/cjs/package.json
+	@echo "Building CJS"
+	@rm lib/cjs/*.js lib/cjs/*.js.map 2> /dev/null
+	@npx tsc -p lib/cjs/tsconfig.json
 
 build-esm:
 	@echo "Building ESM"
-	@rm -rf lib/esm 2> /dev/null
-	@npx tsc -p tsconfig.esm.json
-	@echo $(NPMPACKAGE) > lib/esm/package.json
+	@rm lib/esm/*.js lib/esm/*.js.map 2> /dev/null
+	@npx tsc -p lib/esm/tsconfig.json
 
 build-dts:
-	@echo "Building TypeScript declarations"
-	@rm -rf lib/dts 2> /dev/null
-	@npx tsc -p tsconfig.dts.json
+	@echo "Building DTS"
+	@rm lib/types/*.d.ts lib/types/*.d.ts.map 2> /dev/null
+	@npx tsc -p lib/types/tsconfig.json

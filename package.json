@@ -26,7 +26,10 @@
         }
     },
     "files": [
-        "./lib/"
+        "lib/*/*.js",
+        "lib/*/*.map",
+        "lib/*/*.ts",
+        "lib/*/package.json"
     ],
     "scripts": {
         "build": "make build",

@@ -1,5 +1,7 @@
 /dist/
-/lib/
+/lib/*/*
+!/lib/*/package.json
+!/lib/*/tsconfig.json
 /node_modules/
 *.log*
 package-lock.json
