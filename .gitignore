@@ -1,8 +1,10 @@
+/coverage/
 /dist/
 /lib/*/*
 !/lib/*/package.json
 !/lib/*/tsconfig.json
 /node_modules/
 *.log*
+coverage.*
 package-lock.json
 report.*.json

@@ -37,12 +37,15 @@
         "build:esm": "make build-esm",
         "build:dts": "make build-dts",
         "prepublishOnly": "npm run build",
-        "test": "uvu tests"
+        "test": "uvu tests",
+        "test:coverage": "c8 npm test",
+        "test:report": "c8 report --reporter=text-lcov > coverage.lcov"
     },
     "engines": {
         "node": "^12.20.0 || ^14.14.0 || >=16.0.0"
     },
     "devDependencies": {
+        "c8": "^7.7.2",
         "typescript": "^4.3.2",
         "uvu": "^0.5.1"
     }
