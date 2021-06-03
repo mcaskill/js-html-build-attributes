@@ -39,6 +39,8 @@ console.log(`<input ${htmlBuildAttributes.composeAttributes(attrs)}>`);
 <input type="file" id="avatar" name="avatar" class="form-control form-control-sm" multiple accept="image/png,image/jpeg" data-max-files="3">
 ```
 
+Browse [`/examples`](/examples) for a list of demonstrations and enhancements.
+
 ## API
 
 ### Default Behaviour
