@@ -1,4 +1,4 @@
-# HTMLBuildAttributes
+# HTML Build Attributes
 
 > ES2019, TypeScript 4 >= 4.3, Node 12 >= 12.20, Node 14 >= 14.14, Node 16
 
