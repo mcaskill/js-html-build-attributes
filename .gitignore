@@ -5,6 +5,4 @@
 !/lib/*/tsconfig.json
 /node_modules/
 *.log*
-coverage.*
-package-lock.json
 report.*.json

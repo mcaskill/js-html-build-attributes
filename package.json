@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "@mcaskill/html-build-attributes",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "description": "Generate a string of HTML attributes.",
     "license": "MIT",
     "homepage": "https://github.com/mcaskill/js-html-build-attributes",
