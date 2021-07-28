@@ -12,7 +12,7 @@
  *
  * @typedef {Object<string, *>} HTMLAttributeMap
  */
-type HTMLAttributeMap = Record<string, any>;
+type HTMLAttributeMap = Record<string, unknown>;
 
 /**
  * Map of characters to entities.
@@ -84,32 +84,32 @@ export default class HTMLBuildAttributes
      * @returns {string|null} Returns a string of a single HTML attribute
      *     or a `null` if the attribute is empty or invalid.
      */
-    composeAttribute(name: string, value: any): string | null
+    composeAttribute(name: string, value: unknown): string | null
     {
         this.assertValidName(name);
 
         value = this.parseValue(value, name);
 
-        if (this.isNil(value)) {
-            return null;
+        switch (typeof value) {
+            case 'boolean':
+                return value ? name : null;
+
+            case 'string':
+                return `${name}="${this.escapeValue(value)}"`;
         }
 
-        if (typeof value === 'boolean') {
-            return value ? name : null;
-        }
-
-        return `${name}="${this.escapeValue(value)}"`;
+        return null;
     }
 
     /**
      * Converts the value into a string or boolean.
      *
-     * @param   {*}      value  - The attribute value.
-     * @param   {string} [name] - The attribute name.
+     * @param   {*}      value - The attribute value.
+     * @param   {string} name  - The attribute name.
      * @returns {string|boolean|null} Returns the parsed value
      *     or `null` to ignore the attribute.
      */
-    parseValue(value: any, name?: string): string | boolean | null
+    parseValue(value: unknown, name: string): string | boolean | null
     {
         if (this.isNil(value)) {
             return null;
@@ -140,12 +140,13 @@ export default class HTMLBuildAttributes
     /**
      * Converts the number value into a string.
      *
-     * @param   {number} value  - The attribute values to stringify.
-     * @param   {string} [name] - The attribute name.
+     * @param   {number} value - The attribute values to stringify.
+     * @param   {string} name  - The attribute name.
      * @returns {string|null} Returns the parsed value
      *     or `null` to ignore the attribute.
      */
-    parseNumber(value: number, name?: string): string | null
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars -- Preserve optional parameter.
+    parseNumber(value: number, name: string): string | null
     {
         if (!Number.isFinite(value)) {
             return null;
@@ -157,14 +158,15 @@ export default class HTMLBuildAttributes
     /**
      * Concatenates the array into a string separated by spaces.
      *
-     * @param   {*[]}    value  - The attribute values to stringify.
-     * @param   {string} [name] - The attribute name.
+     * @param   {*[]}    value - The attribute values to stringify.
+     * @param   {string} name  - The attribute name.
      * @returns {string|null} Returns the parsed value
      *     or `null` to ignore the attribute.
      */
-    parseArray(value: any[], name?: string): string | null
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars -- Preserve optional parameter.
+    parseArray(value: unknown[], name: string): string | null
     {
-        value = value.filter((token: any): boolean => (token != null));
+        value = value.filter((token: unknown): boolean => (token != null));
 
         if (!value.length) {
             return null;
@@ -176,15 +178,18 @@ export default class HTMLBuildAttributes
     /**
      * Converts the object to its string representation or into a JSON string.
      *
-     * @param   {object} value  - The attribute value to stringify.
-     * @param   {string} [name] - The attribute name.
+     * @param   {*}      value - The attribute value to stringify.
+     * @param   {string} name  - The attribute name.
      * @returns {string|null} Returns the parsed value
      *     or `null` to ignore the attribute.
      */
-    parseObject(value: object, name?: string): string | null
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars -- Preserve optional parameter.
+    parseObject(value: unknown, name: string): string | null
     {
-        if (value !== null && value.toString !== Object.prototype.toString) {
-            return value.toString();
+        if (typeof value === 'object' && value !== null) {
+            if (value.toString !== Object.prototype.toString) {
+                return value.toString();
+            }
         }
 
         return JSON.stringify(value);
@@ -237,11 +242,11 @@ export default class HTMLBuildAttributes
     /**
      * Determines whether the value is `null` or `undefined`.
      *
-     * @param  {any} value - The value to check.
+     * @param  {*} value - The value to check.
      * @return {boolean} Returns `true` if the value is `null` or `undefined`,
      *     otherwise `false`.
      */
-    isNil(value: any): boolean
+    isNil(value: unknown): boolean
     {
         return (value == null);
     }
