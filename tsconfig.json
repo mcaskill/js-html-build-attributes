@@ -2,6 +2,7 @@
     "compilerOptions": {
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
         "outDir": "./lib",
         "sourceMap": true,
         "strict": true,

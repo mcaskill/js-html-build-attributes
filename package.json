@@ -35,6 +35,7 @@
         "lib/*/package.json"
     ],
     "scripts": {
+        "lint": "tsc; eslint 'src/**/*.ts' 'tests/**/*.js' 'examples/**/*.js'",
         "build": "make build",
         "build:cjs": "make build-cjs",
         "build:esm": "make build-esm",
@@ -47,7 +48,10 @@
         "node": "^12.20.0 || ^14.14.0 || >=16.0.0"
     },
     "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^4.28.5",
+        "@typescript-eslint/parser": "^4.28.5",
         "c8": "^7.7.3",
+        "eslint": "^7.31.0",
         "typescript": "^4.3.5",
         "uvu": "^0.5.1"
     }
