@@ -240,10 +240,16 @@ export default class HTMLBuildAttributes
     }
 
     /**
-     * Determines whether the value is `null` or `undefined`.
+     * Checks if value is `null` or `undefined`.
+     *
+     * Note: `undefined` and `null` are
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#loose_equality_using_ loosely equal}.
+     *
+     * Adapted from {@link https://lodash.com/docs/4.17.15#isNil `_.isNil`},
+     * {@link https://github.com/lodash/lodash/blob/4.17.15/LICENSE license MIT}
      *
      * @param  {*} value - The value to check.
-     * @return {boolean} Returns `true` if the value is `null` or `undefined`,
+     * @return {boolean} Returns `true` if the value is nullish,
      *     otherwise `false`.
      */
     isNil(value: unknown): boolean
