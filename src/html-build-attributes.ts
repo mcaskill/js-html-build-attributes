@@ -15,6 +15,13 @@
 type AttributeMap = Record<string, unknown>;
 
 /**
+ * Value of an HTML attribute.
+ *
+ * @typedef {string|boolean|null} FilteredValue
+ */
+type FilteredValue = string | boolean | null;
+
+/**
  * Map of characters to entities.
  *
  * @typedef {Object<string, string>} EscapeMap
@@ -89,7 +96,7 @@ export default class HTMLBuildAttributes
     {
         this.assertValidName(name);
 
-        value = this.parseValue(value, name);
+        value = this.filterValue(value, name);
 
         switch (typeof value) {
             case 'boolean':
@@ -103,21 +110,21 @@ export default class HTMLBuildAttributes
     }
 
     /**
-     * Converts the value into a string or boolean.
+     * Filters the value into a string or boolean.
      *
-     * @param   {*}      value - The attribute value.
+     * @param   {*}      value - The attribute value to filter.
      * @param   {string} name  - The attribute name.
-     * @returns {string|boolean|null} Returns the parsed value
+     * @returns {FilteredValue} Returns the filtered value
      *     or `null` to ignore the attribute.
      */
-    parseValue(value: unknown, name: string): string | boolean | null
+    filterValue(value: unknown, name: string): FilteredValue
     {
         if (this.isNil(value)) {
             return null;
         }
 
         if (Array.isArray(value)) {
-            return this.parseArray(value, name);
+            return this.filterArray(value, name);
         }
 
         switch (typeof value) {
@@ -129,25 +136,24 @@ export default class HTMLBuildAttributes
                 return value.toString();
 
             case 'number':
-                return this.parseNumber(value, name);
+                return this.filterNumber(value, name);
 
             case 'object':
-                return this.parseObject(value, name);
+                return this.filterObject(value, name);
         }
 
         return null;
     }
 
     /**
-     * Converts the number value into a string.
+     * Filters a value that is a number or BigInt.
      *
-     * @param   {number} value - The attribute values to stringify.
+     * @param   {*}      value - The attribute value to filter.
      * @param   {string} name  - The attribute name.
-     * @returns {string|null} Returns the parsed value
-     *     or `null` to ignore the attribute.
+     * @returns {FilteredValue} Returns the filtered value or `null`.
      */
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars -- Preserve optional parameter.
-    parseNumber(value: number, name: string): string | null
+    filterNumber(value: unknown, name: string): FilteredValue
     {
         if (!Number.isFinite(value)) {
             return null;
@@ -157,15 +163,16 @@ export default class HTMLBuildAttributes
     }
 
     /**
-     * Concatenates the array into a string separated by spaces.
+     * Filters a value that is a list of tokens.
      *
-     * @param   {*[]}    value - The attribute values to stringify.
+     * Arrays will be concatenated into a string separated by spaces.
+     *
+     * @param   {*}      value - The attribute value to filter.
      * @param   {string} name  - The attribute name.
-     * @returns {string|null} Returns the parsed value
-     *     or `null` to ignore the attribute.
+     * @returns {FilteredValue} Returns the filtered value or `null`.
      */
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars -- Preserve optional parameter.
-    parseArray(value: unknown[], name: string): string | null
+    filterArray(value: unknown, name: string): FilteredValue
     {
         value = value.filter((token: unknown): boolean => (token != null));
 
@@ -179,13 +186,12 @@ export default class HTMLBuildAttributes
     /**
      * Converts the object to its string representation or into a JSON string.
      *
-     * @param   {*}      value - The attribute value to stringify.
+     * @param   {*}      value - The attribute value to filter.
      * @param   {string} name  - The attribute name.
-     * @returns {string|null} Returns the parsed value
-     *     or `null` to ignore the attribute.
+     * @returns {FilteredValue} Returns the filtered value or `null`.
      */
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars -- Preserve optional parameter.
-    parseObject(value: unknown, name: string): string | null
+    filterObject(value: unknown, name: string): FilteredValue
     {
         if (typeof value === 'object' && value !== null) {
             if (value.toString !== Object.prototype.toString) {
