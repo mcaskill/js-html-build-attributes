@@ -4,15 +4,15 @@
  */
 
 /**
- * Map of attribute names and values.
+ * Map of HTML attribute names and values.
  *
  * A primitive interpretation of
  * {@link https://developer.mozilla.org/en-US/docs/Web/API/NamedNodeMap `NamedNodeMap`}
- * and  {@link https://developer.mozilla.org/en-US/docs/Web/API/Attr `Attr`}.
+ * and {@link https://developer.mozilla.org/en-US/docs/Web/API/Attr `Attr`}.
  *
- * @typedef {Object<string, *>} HTMLAttributeMap
+ * @typedef {Object<string, *>} AttributeMap
  */
-type HTMLAttributeMap = Record<string, unknown>;
+type AttributeMap = Record<string, unknown>;
 
 /**
  * Map of characters to entities.
@@ -53,11 +53,12 @@ export default class HTMLBuildAttributes
     /**
      * Generates a string of many HTML attributes.
      *
-     * @param   {HTMLAttributeMap} attributes - An object of attribute names and values.
+     * @param   {AttributeMap} attributes -
+     *     An object of attribute names and values.
      * @returns {string|null} Returns a string of many HTML attributes
      *     or `null` if all attributes are invalid or empty.
      */
-    composeAttributes(attributes: HTMLAttributeMap): string | null
+    composeAttributes(attributes: AttributeMap): string | null
     {
         const html = [];
 
