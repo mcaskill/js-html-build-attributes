@@ -3,10 +3,10 @@
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "noEmit": true,
-        "outDir": "./lib",
+        "outDir": "./dist",
         "sourceMap": true,
         "strict": true,
-        "target": "ES2019"
+        "target": "ES2017"
     },
     "include": [
         "./src"
