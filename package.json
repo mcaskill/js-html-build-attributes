@@ -61,7 +61,8 @@
         "build:esm": "make build-esm",
         "build:dts": "make build-dts",
         "lint": "tsc --noEmit; eslint 'src/**/*.ts' 'tests/**/*.js' 'examples/**/*.js'",
-        "prepublishOnly": "npm run build",
+        "preversion": "npm run build",
+        "postversion": "git push --follow-tags",
         "test": "uvu tests",
         "test:coverage": "c8 --per-file npm test"
     },
