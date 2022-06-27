@@ -1,13 +1,13 @@
 # HTML Build Attributes
 
-> ES2017, TypeScript 4 >= 4.4, Node 12 >= 12.20, Node 14 >= 14.14, Node 16
+> ES2017, TypeScript 4, Node 14
 
 Generate a string of HTML attributes.
 
 ## Install
 
-```
-$ npm install @mcaskill/html-build-attributes
+```shell
+npm install @mcaskill/html-build-attributes
 ```
 
 ## Upgrade
