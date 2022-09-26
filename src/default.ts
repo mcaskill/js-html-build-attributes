@@ -30,7 +30,12 @@ const htmlBuildAttributes = new HTMLBuildAttributes(
     escapeAttributeValue
 );
 
-export default htmlBuildAttributes;
+export {
+    escapeAttributeValue,
+    filterAttributeValue,
+};
 
-export const composeHTMLAttributes = htmlBuildAttributes.composeAttributes.bind(htmlBuildAttributes);
-export const composeHTMLAttribute  = htmlBuildAttributes.composeAttribute.bind(htmlBuildAttributes);
+export const {
+    composeAttribute,
+    composeAttributes,
+} = htmlBuildAttributes;

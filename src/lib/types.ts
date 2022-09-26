@@ -14,7 +14,8 @@ export type AttrName = string;
  *
  * Either:
  *
- * - `boolean`: The filtered value (should render attribute).
+ * - `true`: The filtered value (should render attribute).
+ * - `false`: The filtered value (should reject attribute).
  * - `string`: The filtered value (should render attribute).
  * - `null`: The value is none (should reject attribute).
  *

@@ -46,9 +46,9 @@ export class HTMLBuildAttributes
     /**
      * Creates a new HTML attributes composer.
      *
-     * @param  {AttrValueFilter}   [attributeValueFilter]
-     * @param  {AttrValueEscaper}  [attributeValueEscaper]
-     * @param  {AttrMapComparator} [attributesComparator]
+     * @param  {?AttrValueFilter}   [attributeValueFilter]
+     * @param  {?AttrValueEscaper}  [attributeValueEscaper]
+     * @param  {?AttrMapComparator} [attributesComparator]
      * @throws {TypeError} If an argument is not a function.
      */
     constructor(
