@@ -1,5 +1,4 @@
 {
-    "private": true,
     "name": "@mcaskill/html-build-attributes",
     "version": "0.0.0",
     "description": "Generate a string of HTML attributes.",
@@ -15,58 +14,58 @@
         "homepage": "https://github.com/mcaskill"
     },
     "keywords": [
+        "front-end",
         "function",
-        "html"
+        "html",
+        "javascript",
+        "templating"
     ],
-    "engines": {
-        "node": ">=14"
-    },
     "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/dts/default.d.ts",
+            "import": "./dist/esm/default.js",
+            "require": "./dist/cjs/default.js"
+        },
+        "./default": {
+            "types": "./dist/dts/default.d.ts",
+            "import": "./dist/esm/default.js",
+            "require": "./dist/cjs/default.js"
+        },
+        "./lib": {
+            "types": "./dist/dts/lib/index.d.ts",
+            "import": "./dist/esm/lib/index.js",
+            "require": "./dist/cjs/lib/index.js"
+        },
+        "./lib/*": {
+            "types": "./dist/dts/lib/*.d.ts",
+            "import": "./dist/esm/lib/*.js",
+            "require": "./dist/cjs/lib/*.js"
+        },
+        "./lib/**/*": {
+            "types": "./dist/dts/lib/**/*.d.ts",
+            "import": "./dist/esm/lib/**/*.js",
+            "require": "./dist/cjs/lib/**/*.js"
+        },
+        "./lib/filter": {
+            "types": "./dist/dts/lib/filter/index.d.ts",
+            "import": "./dist/esm/lib/filter/index.js",
+            "require": "./dist/cjs/lib/filter/index.js"
+        },
+        "./lib/sort": {
+            "types": "./dist/dts/lib/sort/index.d.ts",
+            "import": "./dist/esm/lib/sort/index.js",
+            "require": "./dist/cjs/lib/sort/index.js"
+        },
+        "./lib/util": {
+            "types": "./dist/dts/lib/util/index.d.ts",
+            "import": "./dist/esm/lib/util/index.js",
+            "require": "./dist/cjs/lib/util/index.js"
+        }
+    },
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "types": "./dist/dts/index.d.ts",
-    "exports": {
-        ".": {
-            "import": "./dist/esm/default.js",
-            "require": "./dist/cjs/default.js",
-            "types": "./dist/dts/default.d.ts"
-        },
-        "./default": {
-            "import": "./dist/esm/default.js",
-            "require": "./dist/cjs/default.js",
-            "types": "./dist/dts/default.d.ts"
-        },
-        "./lib": {
-            "import": "./dist/esm/lib/index.js",
-            "require": "./dist/cjs/lib/index.js",
-            "types": "./dist/dts/lib/index.d.ts"
-        },
-        "./lib/*": {
-            "import": "./dist/esm/lib/*.js",
-            "require": "./dist/cjs/lib/*.js",
-            "types": "./dist/dts/lib/*.d.ts"
-        },
-        "./lib/**/*": {
-            "import": "./dist/esm/lib/**/*.js",
-            "require": "./dist/cjs/lib/**/*.js",
-            "types": "./dist/dts/lib/**/*.d.ts"
-        },
-        "./lib/filter": {
-            "import": "./dist/esm/lib/filter/index.js",
-            "require": "./dist/cjs/lib/filter/index.js",
-            "types": "./dist/dts/lib/filter/index.d.ts"
-        },
-        "./lib/sort": {
-            "import": "./dist/esm/lib/sort/index.js",
-            "require": "./dist/cjs/lib/sort/index.js",
-            "types": "./dist/dts/lib/sort/index.d.ts"
-        },
-        "./lib/util": {
-            "import": "./dist/esm/lib/util/index.js",
-            "require": "./dist/cjs/lib/util/index.js",
-            "types": "./dist/dts/lib/util/index.d.ts"
-        }
-    },
     "files": [
         "dist/**/*"
     ],
@@ -82,7 +81,7 @@
         "test:coverage": "c8 --per-file npm test"
     },
     "engines": {
-        "node": "^12.20.0 || ^13.14.0 || >=14.0.0"
+        "node": ">=14"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^5.38.0",
