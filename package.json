@@ -74,6 +74,7 @@
         "build:cjs": "make build-cjs",
         "build:esm": "make build-esm",
         "build:dts": "make build-dts",
+        "clean": "make clean",
         "lint": "tsc --noEmit; eslint 'src/**/*.ts' 'tests/**/*.js' 'examples/**/*.js'",
         "preversion": "npm run build",
         "postversion": "git push --follow-tags",
