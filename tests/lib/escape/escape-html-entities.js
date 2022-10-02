@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import {
     escapeMap,
     regexUnescaped,
-    escapeAttributeValue,
+    escapeHTMLEntities,
 } from '@mcaskill/html-build-attributes/lib/escape';
 
 /**
@@ -24,19 +24,19 @@ import {
 }
 
 /**
- * Escape Attribute Value
+ * Escape HTML Entities
  */
 {
-    const test = suite('escapeAttributeValue');
+    const test = suite('escapeHTMLEntities');
 
     test('should convert special characters to HTML entities', () => {
-        const escaped = escapeAttributeValue('&<>"\'`');
+        const escaped = escapeHTMLEntities('&<>"\'`');
 
         assert.is(escaped, '&amp;&lt;&gt;&quot;&#39;&#96;');
     });
 
     test('should handle values with nothing to escape', () => {
-        const escaped = escapeAttributeValue('“the crimes of the ‘good Samaritans’”');
+        const escaped = escapeHTMLEntities('“the crimes of the ‘good Samaritans’”');
 
         assert.is(escaped, '“the crimes of the ‘good Samaritans’”');
     });

@@ -3,7 +3,7 @@ import {
     createOrderedAttributesComparator,
     createFilterArray,
     createFilterResolver,
-    escapeAttributeValue,
+    escapeHTMLEntities,
     filterStringable,
     filterToken,
     filterValue,
@@ -72,7 +72,7 @@ const filterAttributeValue = createFilterResolver([
 
 const htmlBuildAttributes = new HTMLBuildAttributes(
     filterAttributeValue,
-    escapeAttributeValue,
+    escapeHTMLEntities,
     compareAttributes
 );
 

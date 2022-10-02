@@ -1,7 +1,3 @@
-/**
- * @file Attribute Sorting
- */
-
 import type {
     AttrName,
     AttrPair,

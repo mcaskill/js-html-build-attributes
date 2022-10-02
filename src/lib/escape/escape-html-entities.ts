@@ -1,8 +1,6 @@
-/**
- * @file Attribute Escaping
- */
-
-import type { HTMLCharEscapeMap } from './types';
+import type {
+    HTMLCharEscapeMap
+} from '../types';
 
 /**
  * @type {HTMLCharEscapeMap} - Map of characters to HTML entities.
@@ -29,7 +27,7 @@ export const regexHasUnescaped = RegExp(regexUnescaped.source);
 /**
  * @type {AttrValueEscaper}
  */
-export function escapeAttributeValue(string: string): string
+export function escapeHTMLEntities(string: string): string
 {
     if (string && regexHasUnescaped.test(string)) {
         return string.replace(regexUnescaped, (chr) => escapeMap[chr]);

@@ -2,7 +2,7 @@ import {
     HTMLBuildAttributes,
     TypeMismatchError,
     createFilterArray,
-    escapeAttributeValue,
+    escapeHTMLEntities,
 } from '@mcaskill/html-build-attributes';
 
 /**
@@ -53,7 +53,7 @@ const filterTokenList = createFilterArray((value, name) => {
 
 const htmlBuildAttributes = new HTMLBuildAttributes(
     filterTokenList,
-    escapeAttributeValue
+    escapeHTMLEntities
 );
 
 export default htmlBuildAttributes;

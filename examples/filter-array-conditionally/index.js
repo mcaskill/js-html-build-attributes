@@ -1,6 +1,6 @@
 import {
     HTMLBuildAttributes,
-    escapeAttributeValue,
+    escapeHTMLEntities,
 } from '@mcaskill/html-build-attributes';
 
 /**
@@ -77,7 +77,7 @@ function filterTokens(value)
 
 const htmlBuildAttributes = new HTMLBuildAttributes(
     filterTokens,
-    escapeAttributeValue
+    escapeHTMLEntities
 );
 
 export default htmlBuildAttributes;

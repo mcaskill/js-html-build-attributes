@@ -47,6 +47,11 @@
             "import": "./dist/esm/lib/**/*.js",
             "require": "./dist/cjs/lib/**/*.js"
         },
+        "./lib/escape": {
+            "types": "./dist/dts/lib/escape/index.d.ts",
+            "import": "./dist/esm/lib/escape/index.js",
+            "require": "./dist/cjs/lib/escape/index.js"
+        },
         "./lib/filter": {
             "types": "./dist/dts/lib/filter/index.d.ts",
             "import": "./dist/esm/lib/filter/index.js",
