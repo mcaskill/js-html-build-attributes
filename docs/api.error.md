@@ -1,6 +1,6 @@
 # Error Module
 
-> `@mcaskill/html-build-attributes/lib/error.js`
+> [`@mcaskill/html-build-attributes/lib/error.js`](/src/lib/error.ts)
 
 The error module provides custom `Error` objects thrown to escape filters
 and when runtime errors occur.
@@ -36,7 +36,7 @@ This method is used by the static creator methods to generate an error message.
 FilterException.describeAttr(value?: T, name?: AttrName): string
 ```
 
-### Example
+### Examples
 
 ```js
 FilterException.describeAttr(null);

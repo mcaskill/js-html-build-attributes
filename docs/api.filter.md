@@ -1,6 +1,6 @@
 # Filter Modules
 
-> `@mcaskill/html-build-attributes/lib/filter/index.js`
+> [`@mcaskill/html-build-attributes/lib/filter/index.js`](/src/lib/filter/index.ts)
 
 The filter modules are a collection of functions and function factories
 to approve, reject, and mutate a value.
@@ -18,7 +18,7 @@ See [Error API documentation](/docs/api.error.md) for more information.
 
 ## `createFilterArray()`
 
-> `@mcaskill/html-build-attributes/lib/filter/create-filter-array.js`
+> [`@mcaskill/html-build-attributes/lib/filter/create-filter-array.js`](/src/lib/filter/create-filter-array.ts)
 
 Creates a function that applies a filter to each item of the array and
 concatenates the list into a string separated by a customizable delimiter.
@@ -33,7 +33,7 @@ createFilterArray(
 ): function
 ```
 
-### Example
+### Examples
 
 ```js
 import {
@@ -41,7 +41,7 @@ import {
 } from '@mcaskill/html-build-attributes/lib/filter/create-filter-array.js';
 
 const filterTokenList = createFilterArray(filterToken, {
-    'coords': ',',
+  'coords': ',',
 }, ':');
 
 filterTokenList([ 'a', 'b', 'c' ]);
@@ -51,7 +51,7 @@ filterTokenList([ 'a', 'b', 'c' ], 'coords');
 // → a,b,c
 
 const scopedFilterTokenList = createFilterArray(filterToken, {
-    'class': ' ',
+  'class': ' ',
 });
 
 scopedFilterTokenList([ 'a', 'b', 'c' ], 'class');
@@ -66,7 +66,7 @@ scopedFilterTokenList([ 'a', 'b', 'c' ], 'rel');
 
 ## `createFilterChain()`
 
-> `@mcaskill/html-build-attributes/lib/filter/create-filter-chain.js`
+> [`@mcaskill/html-build-attributes/lib/filter/create-filter-chain.js`](/src/lib/filter/create-filter-chain.ts)
 
 Creates a function that applies a collection of filters to a value.
 
@@ -76,7 +76,7 @@ Creates a function that applies a collection of filters to a value.
 createFilterChain(filters: function[]): function
 ```
 
-### Example
+### Examples
 
 ```js
 import {
@@ -105,7 +105,7 @@ reverseThenCapitalize('hello world');
 
 ## `createFilterResolver()`
 
-> `@mcaskill/html-build-attributes/lib/filter/create-filter-resolver.js`
+> [`@mcaskill/html-build-attributes/lib/filter/create-filter-resolver.js`](/src/lib/filter/create-filter-resolver.ts)
 
 Creates a function from a collection of filters that returns the filtered
 value from the first filter that returns a value.
@@ -119,7 +119,7 @@ createFilterResolver(
 ): function
 ```
 
-### Example
+### Examples
 
 ```js
 import {
@@ -172,7 +172,7 @@ its return value.
 
 ## `filterStringable()`
 
-> `@mcaskill/html-build-attributes/lib/filter/filter-stringable.js`
+> [`@mcaskill/html-build-attributes/lib/filter/filter-stringable.js`](/src/lib/filter/filter-stringable.ts)
 
 This function converts a value to a string representation or to a JSON string.
 
@@ -184,22 +184,59 @@ filterStringable(value: T, name?: AttrName): AttrValue
 
 ### Description
 
-If the value is:
+If the value is not _nullish_ (`null` or `undefined`) and:
 
-1. not _nullish_ (`null` or `undefined`) and
+1. a `Date`, the attribute is rendered and the value is converted
+   to [ISO format][Date.toISOString].
 
-  1. a `Date`, the attribute is rendered and the value is converted
-     to [ISO format][Date.toISOString].
+1. [stringable][Object.toString], the attribute is rendered and
+   the value is converted to its string representation.
 
-  1. [stringable][Object.toString], the attribute is rendered and
-     the value is converted to its string representation.
+1. Otherwise, the attribute is rendered and the value is serialized
+   as a [JSON string][JSON.stringify].
 
-  1. Otherwise, the attribute is rendered and the value is serialized
-     as a [JSON string][JSON.stringify].
+### Examples
+
+```js
+import {
+  filterStringable
+} from '@mcaskill/html-build-attributes/lib/filter/filter-stringable.js';
+
+filterStringable(new Date(2006, 0, 2, 15, 4, 5));
+// → 2006-01-02T20:04:05.000Z
+
+class Person {
+  constructor(id, name) {
+    this.id = id;
+    this.name = name;
+  }
+}
+
+filterStringable(new Person(1, 'Tim'));
+// → {"id":1,"name":"Tim"}
+
+class JsonablePerson extends Person {
+  toJSON() {
+    return `${this.id}:${this.name}`;
+  }
+}
+
+filterStringable(new JsonablePerson(1, 'Tim'));
+// → "1:Tim"
+
+class StringablePerson extends Person {
+  toString() {
+    return this.name;
+  }
+}
+
+filterStringable(new StringablePerson(1, 'Tim'));
+// → Tim
+```
 
 ## `filterToken()`
 
-> `@mcaskill/html-build-attributes/lib/filter/filter-token.js`
+> [`@mcaskill/html-build-attributes/lib/filter/filter-token.js`](/src/lib/filter/filter-token.ts)
 
 This function filters a value that is a string, number, boolean, or `BigInt`.
 
@@ -221,7 +258,6 @@ If the value is:
    Leading and trailing whitespace is preserved.
 
    An empty string is rendered.
-
 1. a _boolean_, the value is converted to a string and is concatenated.
 
 1. a _BigInt_, the value is concatenated.
@@ -232,7 +268,7 @@ If the value is:
 
 ## `filterValue()`
 
-> `@mcaskill/html-build-attributes/lib/filter/filter-value.js`
+> [`@mcaskill/html-build-attributes/lib/filter/filter-value.js`](/src/lib/filter/filter-value.ts)
 
 This function filters a value that is a string, number, boolean, or `BigInt`.
 
@@ -253,12 +289,12 @@ If the value is:
 
 1. a _boolean_ and
 
-   1. the attribute name starts with `aria-`,
+    1. the attribute name starts with `aria-`,
       the boolean is converted to a string.
 
-   1. is `true`, only the attribute name is rendered.
+    1. is `true`, only the attribute name is rendered.
 
-   1. is `false`, the attribute is discarded.
+    1. is `false`, the attribute is discarded.
 
 1. a _string_, the attribute is rendered.
 

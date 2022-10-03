@@ -1,6 +1,6 @@
 # Compose Module
 
-> `@mcaskill/html-build-attributes/lib/compose.js`
+> [`@mcaskill/html-build-attributes/lib/compose.js`](/src/lib/compose.ts)
 
 The compose module provides the `HTMLBuildAttributes` class which
 essentially behaves like a gloried key/value concatenator.
@@ -56,7 +56,7 @@ Generate a string of a HTML attribute from a name and value.
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.composeAttribute(name: AttrName, value: T): ?string
+HTMLBuildAttributes.prototype.composeAttribute(name: AttrName, value: T): string|null
 ```
 
 ### Examples
@@ -79,7 +79,7 @@ Generate a string of many HTML attributes from a map of names and values.
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.composeAttributes(attributes: object<AttrName, T>): ?string
+HTMLBuildAttributes.prototype.composeAttributes(attributes: object<AttrName, T>): string|null
 ```
 
 ### Example
@@ -108,7 +108,7 @@ This method is defined from the constructor's `attributesComparator` parameter.
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.compareAttributes: null
+HTMLBuildAttributes.prototype.compareAttributes: undefined
 HTMLBuildAttributes.prototype.compareAttributes(
   a: [ AttrName, T ],
   b: [ AttrName, T ]
@@ -152,7 +152,7 @@ This method is defined from the constructor's `attributeValueEscaper` parameter.
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.escapeAttributeValue: null
+HTMLBuildAttributes.prototype.escapeAttributeValue: undefined
 HTMLBuildAttributes.prototype.escapeAttributeValue(value: string): string
 ```
 
@@ -172,8 +172,8 @@ This method is defined from the constructor's `attributeValueFilter` parameter.
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.filterAttributeValue: null
-HTMLBuildAttributes.prototype.filterAttributeValue(value: T, name: AttrName): AttrValue
+HTMLBuildAttributes.prototype.filterAttributeValue: undefined
+HTMLBuildAttributes.prototype.filterAttributeValue(value: T, name?: AttrName): AttrValue
 ```
 
 ### Examples

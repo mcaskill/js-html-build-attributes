@@ -19,6 +19,8 @@ which means breaking changes may occur between major releases.
 
 > Browse [`/examples`](/examples) for a list of demonstrations and enhancements.
 
+The following example demonstrates the [default module](#default-module):
+
 ```js
 import {
   composeAttribute,
@@ -81,26 +83,26 @@ escapeAttributeValue('{"id":1,"name":"Tim"}');
 
 > `@mcaskill/html-build-attributes/default.js`
 
-A preset instance of [`HTMLBuildAttributes`](/docs/api.compose.md) is available.
-It's equiped with a basic filters, escape of basic HTML entities, and no sorting,
-which should cover most use cases.
+A preset instance of [`HTMLBuildAttributes`](/docs/api.compose.md) is available
+(featured above). It's equiped with basic filters, escape of basic HTML entities,
+and no sorting, which should cover most HTML tags.
 
-* **`composeAttribute()`**
+* **`composeAttribute(name: string, value: unknown): string|null`**
 
   A reference to [`HTMLBuildAttributes#composeAttribute()`](/docs/api.compose.md#htmlbuildattributescomposeattribute)
   from which you can generate a string of one HTML attribute.
 
-* **`composeAttributes()`**
+* **`composeAttributes(attributes: object<string, unknown>): string|null`**
 
   A reference to [`HTMLBuildAttributes#composeAttributes()`](/docs/api.compose.md#htmlbuildattributescomposeattributes)
   from which you can generate a string of many HTML attributes.
 
-* **`escapeAttributeValue()`**
+* **`escapeAttributeValue(value: string): string`**
 
   A reference to [`HTMLBuildAttributes#escapeAttributeValue()`](/docs/api.compose.md#htmlbuildattributesescapeattributevalue)
   from which you can convert special characters to their corresponding HTML entities.
 
-* **`filterAttributeValue()`**
+* **`filterAttributeValue(value: unknown, name?: string): string|boolean|null`**
 
   A reference to [`HTMLBuildAttributes#filterAttributeValue()`](/docs/api.compose.md#htmlbuildattributesfilterattributevalue)
   from which you can approve, reject, and parse a value for an HTML attribute.

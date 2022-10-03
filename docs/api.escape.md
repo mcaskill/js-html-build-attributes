@@ -2,7 +2,7 @@
 
 ## `escapeHTMLEntities()`
 
-> `@mcaskill/html-build-attributes/lib/escape/escape-html-entities.js`
+> [`@mcaskill/html-build-attributes/lib/escape/escape-html-entities.js`](/src/lib/escape/escape-html-entities.ts)
 
 The function converts the following characters in a string to their
 corresponding HTML entities: `&`, `<`, `>`, `"`, `'`, and `` ` ``.
