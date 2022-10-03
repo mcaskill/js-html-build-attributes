@@ -11,20 +11,20 @@ and when runtime errors occur.
 > * `AttrValue` is a string, boolean, or null, and represents a filtered attribute value.
 > * `T` represents any data type.
 
-## `FilterError()`
+## `FilterException()`
 
-The `FilterError` object represents an error with a value to be filtered.
+The `FilterException` object represents an error with a value to be filtered.
 
-The [`BadValueError`](#badvalueerror) and [`TypeMismatchError`](#typemismatcherror)
-objects extend the `FilterError` object.
+The [`BadValueException`](#badvalueerror) and [`TypeMismatchException`](#typemismatcherror)
+objects extend the `FilterException` object.
 
 ### Syntax
 
 ```ts
-new FilterError(message: string, options?: object)
+new FilterException(message: string, options?: object)
 ```
 
-## `FilterError.describeAttr()`
+## `FilterException.describeAttr()`
 
 A static method to format the attribute name or value.
 
@@ -33,52 +33,52 @@ This method is used by the static creator methods to generate an error message.
 ### Syntax
 
 ```ts
-FilterError.describeAttr(value?: T, name?: AttrName): string
+FilterException.describeAttr(value?: T, name?: AttrName): string
 ```
 
 ### Example
 
 ```js
-FilterError.describeAttr(null);
+FilterException.describeAttr(null);
 // → null
 
-FilterError.describeAttr(undefined);
+FilterException.describeAttr(undefined);
 // → undefined
 
-FilterError.describeAttr(true);
+FilterException.describeAttr(true);
 // → boolean
 
-FilterError.describeAttr(42);
+FilterException.describeAttr(42);
 // → number
 
-FilterError.describeAttr('hello');
+FilterException.describeAttr('hello');
 // → string
 
-FilterError.describeAttr([ 1, 2, 3 ]);
+FilterException.describeAttr([ 1, 2, 3 ]);
 // → array
 
-FilterError.describeAttr(new Date());
+FilterException.describeAttr(new Date());
 // → object
 
-FilterError.describeAttr('hello', 'class');
+FilterException.describeAttr('hello', 'class');
 // → attribute [class]
 ```
 
-## `FilterError.createNotFilterable()`
+## `FilterException.createNotFilterable()`
 
 A static method to create a new error object with a generic "is not filterable"
 message derived from the provided parameters.
 
-This method is recommended for creating `TypeMismatchError` objects.
+This method is recommended for creating `TypeMismatchException` objects.
 
 ### Syntax
 
 ```ts
-FilterError.createNotFilterable(
+FilterException.createNotFilterable(
   value?: T,
   name?: AttrName,
   options?: object
-): FilterError
+): FilterException
 ```
 
 ### Example
@@ -89,25 +89,25 @@ function filterNumber(value) {
     return value;
   }
 
-  throw new TypeMismatchError.createNotFilterable(value);
+  throw new TypeMismatchException.createNotFilterable(value);
 }
 ```
 
-## `FilterError.createNotConcatenable()`
+## `FilterException.createNotConcatenable()`
 
 A static method to create a new error object with a generic "is not concatenable"
 message derived from the provided parameters.
 
-This method is recommended for creating `TypeMismatchError` objects.
+This method is recommended for creating `TypeMismatchException` objects.
 
 ### Syntax
 
 ```ts
-FilterError.createNotConcatenable(
+FilterException.createNotConcatenable(
   value?: T,
   name?: AttrName,
   options?: object
-): FilterError
+): FilterException
 ```
 
 ### Example
@@ -120,7 +120,7 @@ function filterList(value) {
     try {
       tokens.push(filterString(token));
     } catch (err) {
-      throw TypeMismatchError.createNotConcatenable(value, null, { cause: err });
+      throw TypeMismatchException.createNotConcatenable(value, null, { cause: err });
     }
   }
 
@@ -128,9 +128,9 @@ function filterList(value) {
 }
 ```
 
-## `BadValueError()`
+## `BadValueException()`
 
-The `BadValueError` object represents a value that
+The `BadValueException` object represents a value that
 a filter is unable to convert.
 
 ### Example
@@ -141,13 +141,13 @@ function assertFiniteNumber(value) {
     return value;
   }
 
-  throw new BadValueError('number is not finite');
+  throw new BadValueException('number is not finite');
 }
 ```
 
-## `TypeMismatchError()`
+## `TypeMismatchException()`
 
-The `TypeMismatchError` object represents a value that
+The `TypeMismatchException` object represents a value that
 does not conform to the filter's constraints.
 
 For the [compose module](/docs/api.compose.md) and
@@ -162,6 +162,6 @@ function filterNumber(value) {
     return value;
   }
 
-  throw new TypeMismatchError('value is not a number');
+  throw new TypeMismatchException('value is not a number');
 }
 ```

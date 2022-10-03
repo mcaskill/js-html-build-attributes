@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { filterStringable } from '@mcaskill/html-build-attributes/lib/filter';
-import { TypeMismatchError } from '@mcaskill/html-build-attributes/lib/error';
+import { TypeMismatchException } from '@mcaskill/html-build-attributes/lib/error';
 
 /**
  * Filter Stringable
@@ -14,12 +14,12 @@ import { TypeMismatchError } from '@mcaskill/html-build-attributes/lib/error';
         }
     }
 
-    test('should throw a TypeMismatchError if value does not match filter', () => {
+    test('should throw a TypeMismatchException if value does not match filter', () => {
         const assertion = () => filterStringable(null);
 
         assert.throws(
             assertion,
-            (err) => err instanceof TypeMismatchError
+            (err) => err instanceof TypeMismatchException
         );
 
         assert.throws(

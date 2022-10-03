@@ -1,6 +1,6 @@
 import {
     HTMLBuildAttributes,
-    TypeMismatchError,
+    TypeMismatchException,
     createFilterArray,
     escapeHTMLEntities,
 } from '@mcaskill/html-build-attributes';
@@ -48,7 +48,7 @@ const filterTokenList = createFilterArray((value, name) => {
         }
     }
 
-    throw TypeMismatchError.createNotFilterable(value, name);
+    throw TypeMismatchException.createNotFilterable(value, name);
 }, ' ');
 
 const htmlBuildAttributes = new HTMLBuildAttributes(

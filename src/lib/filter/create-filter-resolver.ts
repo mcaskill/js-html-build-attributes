@@ -4,7 +4,7 @@ import type {
     AttrValueFilter,
 } from '../types';
 
-import { TypeMismatchError } from '../error.js';
+import { TypeMismatchException } from '../error.js';
 
 /**
  * Creates a resolver function to filter attribute values.
@@ -39,7 +39,7 @@ export function createFilterResolver(
      * that approves the supplied value.
      *
      * @type   {AttrValueFilter}
-     * @throws {TypeMismatchError} If the value could not be filtered.
+     * @throws {TypeMismatchException} If the value could not be filtered.
      * @throws {Error}
      */
     function filterResolver(value: unknown, name?: AttrName): AttrValue
@@ -48,7 +48,7 @@ export function createFilterResolver(
             try {
                 return filter(value, name);
             } catch (err) {
-                if (err instanceof TypeMismatchError) {
+                if (err instanceof TypeMismatchException) {
                     continue;
                 }
 
@@ -56,7 +56,7 @@ export function createFilterResolver(
             }
         }
 
-        throw TypeMismatchError.createNotFilterable(value, name);
+        throw TypeMismatchException.createNotFilterable(value, name);
     }
 
     /**
@@ -66,7 +66,7 @@ export function createFilterResolver(
      * passed through the collection of function filters.
      *
      * @type   {AttrValueFilter}
-     * @throws {TypeMismatchError}
+     * @throws {TypeMismatchException}
      */
     function filterFunction(value: unknown, name?: AttrName): AttrValue
     {
@@ -74,7 +74,7 @@ export function createFilterResolver(
             return filterResolver(value(), name);
         }
 
-        throw TypeMismatchError.createNotFilterable(value, name);
+        throw TypeMismatchException.createNotFilterable(value, name);
     }
 
     if (useFilterFunction) {

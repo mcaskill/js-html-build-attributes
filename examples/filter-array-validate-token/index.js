@@ -1,7 +1,7 @@
 import {
-    BadValueError,
+    BadValueException,
     HTMLBuildAttributes,
-    TypeMismatchError,
+    TypeMismatchException,
     createFilterArray,
     escapeHTMLEntities,
 } from '@mcaskill/html-build-attributes';
@@ -15,13 +15,13 @@ const filterTokenList = createFilterArray((value, name) => {
     switch (typeof value) {
         case 'string': {
             if (!value.length) {
-                throw new BadValueError(
+                throw new BadValueException(
                     `${name || 'string'} must not be empty`
                 );
             }
 
             if (regexHasWhitespace.test(value)) {
-                throw new BadValueError(
+                throw new BadValueException(
                     `${name || 'string'} must not contain whitespace`
                 );
             }
@@ -36,7 +36,7 @@ const filterTokenList = createFilterArray((value, name) => {
         }
     }
 
-    throw TypeMismatchError.createNotFilterable(value, name);
+    throw TypeMismatchException.createNotFilterable(value, name);
 }, ' ');
 
 const htmlBuildAttributes = new HTMLBuildAttributes(

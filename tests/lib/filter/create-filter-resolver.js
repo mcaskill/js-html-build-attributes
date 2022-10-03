@@ -1,7 +1,7 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import { createFilterResolver } from '@mcaskill/html-build-attributes/lib/filter';
-import { TypeMismatchError } from '@mcaskill/html-build-attributes/lib/error';
+import { TypeMismatchException } from '@mcaskill/html-build-attributes/lib/error';
 
 const uppercase  = (v) => v.toUpperCase();
 const capitalize = (v) => v.replace(/\b\w/g, (w) => w.toUpperCase());
@@ -53,14 +53,14 @@ const reverse    = (v) => [ ...v ].reverse().join('');
     const unexpectedError = new Error();
 
     const filterThrowMismatch = () => {
-        throw new TypeMismatchError;
+        throw new TypeMismatchException;
     };
 
     const filterThrowError = () => {
         throw unexpectedError;
     };
 
-    test('should throw a TypeMismatchError if value does not match any filter', () => {
+    test('should throw a TypeMismatchException if value does not match any filter', () => {
         const filter = createFilterResolver([
             filterThrowMismatch,
             filterThrowMismatch,
@@ -70,7 +70,7 @@ const reverse    = (v) => [ ...v ].reverse().join('');
 
         assert.throws(
             assertion,
-            (err) => err instanceof TypeMismatchError
+            (err) => err instanceof TypeMismatchException
         );
 
         assert.throws(

@@ -5,8 +5,8 @@
 The filter modules are a collection of functions and function factories
 to approve, reject, and mutate a value.
 
-Filters will throw a `TypeMismatchError` if the value is rejected
-or a `BadValueError` if the value is invalid.
+Filters will throw a `TypeMismatchException` if the value is rejected
+or a `BadValueException` if the value is invalid.
 
 See [Error API documentation](/docs/api.error.md) for more information.
 
@@ -127,7 +127,7 @@ import {
 } from '@mcaskill/html-build-attributes/lib/filter/create-filter-resolver.js';
 
 import {
-  TypeMismatchError
+  TypeMismatchException
 } from '@mcaskill/html-build-attributes/lib/error.js';
 
 const filterString = (value, name) => {
@@ -135,7 +135,7 @@ const filterString = (value, name) => {
     return value;
   }
 
-  throw TypeMismatchError.createNotFilterable(value, name);
+  throw TypeMismatchException.createNotFilterable(value, name);
 };
 
 const filterNumber = (value, name) => {
@@ -143,7 +143,7 @@ const filterNumber = (value, name) => {
     return value;
   }
 
-  throw TypeMismatchError.createNotFilterable(value, name);
+  throw TypeMismatchException.createNotFilterable(value, name);
 };
 
 const filterByType = createFilterResolver([

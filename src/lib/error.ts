@@ -35,7 +35,7 @@ declare class Error implements ErrorInterface {
 /**
  * Represents an error with a value to be filtered.
  */
-export class FilterError extends Error
+export class FilterException extends Error
 {
     /**
      * @param {string}    [message]
@@ -92,9 +92,9 @@ export class FilterError extends Error
      * @param   {unknown}   [value]
      * @param   {AttrName}  [name]
      * @param   {ErrorInit} [options]
-     * @returns {FilterError}
+     * @returns {FilterException}
      */
-    static createNotFilterable(value?: unknown, name?: AttrName, options?: ErrorInit): FilterError
+    static createNotFilterable(value?: unknown, name?: AttrName, options?: ErrorInit): FilterException
     {
         const attr = this.describeAttr(value, name);
 
@@ -107,9 +107,9 @@ export class FilterError extends Error
      * @param   {unknown}   [value]
      * @param   {AttrName}  [name]
      * @param   {ErrorInit} [options]
-     * @returns {FilterError}
+     * @returns {FilterException}
      */
-    static createNotConcatenable(value?: unknown, name?: AttrName, options?: ErrorInit): FilterError
+    static createNotConcatenable(value?: unknown, name?: AttrName, options?: ErrorInit): FilterException
     {
         const attr = this.describeAttr(value, name);
 
@@ -120,7 +120,7 @@ export class FilterError extends Error
 /**
  * Represents a value that the filter is unable to convert.
  */
-export class BadValueError extends FilterError
+export class BadValueException extends FilterException
 {
 }
 
@@ -130,6 +130,6 @@ export class BadValueError extends FilterError
  * Indicates the filter does not accept the value and should maybe
  * try another filter.
  */
-export class TypeMismatchError extends FilterError
+export class TypeMismatchException extends FilterException
 {
 }

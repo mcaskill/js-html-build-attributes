@@ -6,7 +6,7 @@ import type {
     AttrValueSeparatorMap,
 } from '../types';
 
-import { TypeMismatchError } from '../error.js';
+import { TypeMismatchException } from '../error.js';
 
 function createFilterArray(
     filter: AttrValueFilter,
@@ -92,7 +92,7 @@ function createFilterArray(
      *
      * @type   {AttrValueFilter}
      * @throws {TypeError} If the filter has no separators.
-     * @throws {TypeMismatchError} If the value could not be
+     * @throws {TypeMismatchException} If the value could not be
      *     concatenated or filtered.
      */
     function filterArray(value: unknown, name?: AttrName): AttrValue
@@ -111,7 +111,7 @@ function createFilterArray(
                 try {
                     tokens.push(filter(token));
                 } catch (err) {
-                    throw TypeMismatchError.createNotConcatenable(value, name, { cause: err });
+                    throw TypeMismatchException.createNotConcatenable(value, name, { cause: err });
                 }
             }
 
@@ -130,7 +130,7 @@ function createFilterArray(
             return tokens.join(separator);
         }
 
-        throw TypeMismatchError.createNotFilterable(value, name);
+        throw TypeMismatchException.createNotFilterable(value, name);
     }
 
     return filterArray;

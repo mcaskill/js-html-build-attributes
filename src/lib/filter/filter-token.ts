@@ -4,8 +4,8 @@ import type {
 } from '../types';
 
 import {
-    BadValueError,
-    TypeMismatchError,
+    BadValueException,
+    TypeMismatchException,
 } from '../error.js';
 
 import { convertNumberToString } from '../util/convert-number-to-string.js';
@@ -14,7 +14,7 @@ import { convertNumberToString } from '../util/convert-number-to-string.js';
  * Filters a value that is a string, number, boolean, or BigInt for a token list.
  *
  * @type   {AttrValueFilter}
- * @throws {TypeMismatchError}
+ * @throws {TypeMismatchException}
  */
 export function filterToken(value: unknown, name?: AttrName): AttrValue
 {
@@ -30,7 +30,7 @@ export function filterToken(value: unknown, name?: AttrName): AttrValue
 
         case 'number': {
             if (!Number.isFinite(value)) {
-                throw new BadValueError(
+                throw new BadValueException(
                     `${name || 'number'} is not finite`
                 );
             }
@@ -39,5 +39,5 @@ export function filterToken(value: unknown, name?: AttrName): AttrValue
         }
     }
 
-    throw TypeMismatchError.createNotFilterable(value, name);
+    throw TypeMismatchException.createNotFilterable(value, name);
 }

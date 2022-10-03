@@ -4,8 +4,8 @@ import type {
 } from '../types';
 
 import {
-    BadValueError,
-    TypeMismatchError,
+    BadValueException,
+    TypeMismatchException,
 } from '../error.js';
 
 import { convertNumberToString } from '../util/convert-number-to-string.js';
@@ -40,7 +40,7 @@ export function filterValue(value: unknown, name?: AttrName): AttrValue
 
         case 'number': {
             if (!Number.isFinite(value)) {
-                throw new BadValueError(
+                throw new BadValueException(
                     `${name || 'number'} is not finite`
                 );
             }
@@ -49,5 +49,5 @@ export function filterValue(value: unknown, name?: AttrName): AttrValue
         }
     }
 
-    throw TypeMismatchError.createNotFilterable(value, name);
+    throw TypeMismatchException.createNotFilterable(value, name);
 }

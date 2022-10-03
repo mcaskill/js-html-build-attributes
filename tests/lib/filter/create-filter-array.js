@@ -1,7 +1,7 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import { createFilterArray } from '@mcaskill/html-build-attributes/lib/filter';
-import { TypeMismatchError } from '@mcaskill/html-build-attributes/lib/error';
+import { TypeMismatchException } from '@mcaskill/html-build-attributes/lib/error';
 
 /**
  * Filter Array Factory
@@ -66,14 +66,14 @@ import { TypeMismatchError } from '@mcaskill/html-build-attributes/lib/error';
 {
     const test = suite('filterArray');
 
-    test('should throw a TypeMismatchError if value does not match filter', () => {
+    test('should throw a TypeMismatchException if value does not match filter', () => {
         const filter = createFilterArray((v) => v, ',');
 
         const assertion = () => filter('abc');
 
         assert.throws(
             assertion,
-            (err) => err instanceof TypeMismatchError
+            (err) => err instanceof TypeMismatchException
         );
 
         assert.throws(
@@ -110,7 +110,7 @@ import { TypeMismatchError } from '@mcaskill/html-build-attributes/lib/error';
         );
     });
 
-    test('should throw a TypeMismatchError if value is not concatenable', () => {
+    test('should throw a TypeMismatchException if value is not concatenable', () => {
         const filter = createFilterArray(() => {
             throw new Error;
         }, ',');
@@ -119,7 +119,7 @@ import { TypeMismatchError } from '@mcaskill/html-build-attributes/lib/error';
 
         assert.throws(
             assertion,
-            (err) => err instanceof TypeMismatchError
+            (err) => err instanceof TypeMismatchException
         );
 
         assert.throws(

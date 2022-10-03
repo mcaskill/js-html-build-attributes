@@ -2,15 +2,15 @@ import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { filterValue } from '@mcaskill/html-build-attributes/lib/filter';
 import {
-    BadValueError,
-    TypeMismatchError,
+    BadValueException,
+    TypeMismatchException,
 } from '@mcaskill/html-build-attributes/lib/error';
 
 /**
  * Filter Value
  */
 {
-    test('should throw a TypeMismatchError if value does not match filter', () => {
+    test('should throw a TypeMismatchException if value does not match filter', () => {
         [
             [ (new Date),    /^object is not filterable$/ ],
             [ Symbol('foo'), /^symbol is not filterable$/ ],
@@ -19,7 +19,7 @@ import {
 
             assert.throws(
                 assertion,
-                (err) => err instanceof TypeMismatchError
+                (err) => err instanceof TypeMismatchException
             );
 
             assert.throws(
@@ -60,12 +60,12 @@ import {
         assert.is(filterValue(-0), '-0');
     });
 
-    test('should throw a BadValueError if value is not a finite number', () => {
+    test('should throw a BadValueException if value is not a finite number', () => {
         const assertion = () => filterValue(1 / 0);
 
         assert.throws(
             assertion,
-            (err) => err instanceof BadValueError
+            (err) => err instanceof BadValueException
         );
 
         assert.throws(

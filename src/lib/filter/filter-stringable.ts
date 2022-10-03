@@ -3,7 +3,7 @@ import type {
     AttrValue,
 } from '../types';
 
-import { TypeMismatchError } from '../error.js';
+import { TypeMismatchException } from '../error.js';
 
 import { isStringable } from '../util/is-stringable.js';
 
@@ -11,7 +11,7 @@ import { isStringable } from '../util/is-stringable.js';
  * Filters a value into its string representation or into a JSON string.
  *
  * @type   {AttrValueFilter}
- * @throws {TypeMismatchError}
+ * @throws {TypeMismatchException}
  */
 export function filterStringable(value: unknown, name?: AttrName): AttrValue
 {
@@ -29,5 +29,5 @@ export function filterStringable(value: unknown, name?: AttrName): AttrValue
         return JSON.stringify(value);
     }
 
-    throw TypeMismatchError.createNotFilterable(value, name);
+    throw TypeMismatchException.createNotFilterable(value, name);
 }
