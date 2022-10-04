@@ -18,23 +18,49 @@ import {
         assert.instance((new HTMLBuildAttributes), HTMLBuildAttributes);
     });
 
-    test('should assign supplied functions to class properties', () => {
-        const noop = () => {};
+    test('should assign `this` to class property functions', () => {
+        let html;
+
+        // Traditional functions
+        const filterTradFn = function (value) {
+            assert.is(this, html);
+            return value;
+        };
+        const escapeTradFn = function (value) {
+            assert.is(this, html);
+            return value;
+        };
+        const compareTradFn = function ([ aName ], [ bName ]) {
+            assert.is(this, html);
+            return (aName < bName ? -1 : 1);
+        };
+
+        // Arrow functions
+        const filterAnonFn = (value) => {
+            assert.is(this, undefined);
+            return value;
+        };
+        const escapeAnonFn = (value) => {
+            assert.is(this, undefined);
+            return value;
+        };
+        const compareAnonFn = ([ aName ], [ bName ]) => {
+            assert.is(this, undefined);
+            return (aName < bName ? -1 : 1);
+        };
 
         [
-            [ noop, false, null ],
-            [ null, noop, false ],
-            [ false, null, noop ],
+            [ filterTradFn, escapeTradFn, compareTradFn ],
+            [ filterAnonFn, escapeAnonFn, compareAnonFn ],
         ].forEach(([ filterFn, escapeFn, compareFn ]) => {
-            let html;
+            html = new HTMLBuildAttributes(filterFn, escapeFn, compareFn);
 
-            assert.not.throws(
-                () => html = new HTMLBuildAttributes(filterFn, escapeFn, compareFn)
-            );
-
-            assert.is(html.filterAttributeValue, filterFn || undefined);
-            assert.is(html.escapeAttributeValue, escapeFn || undefined);
-            assert.is(html.compareAttributes, compareFn || undefined);
+            html.filterAttributeValue('button', 'type');
+            html.escapeAttributeValue('button');
+            [
+               [ 'type', 'button' ],
+               [ 'class', 'btn' ],
+            ].sort(html.compareAttributes);
         });
     });
 

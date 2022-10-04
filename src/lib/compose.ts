@@ -62,7 +62,7 @@ export class HTMLBuildAttributes
 
         if (attributeValueFilter) {
             if (typeof attributeValueFilter === 'function') {
-                filterAttributeValueDescriptor.value = attributeValueFilter;
+                filterAttributeValueDescriptor.value = attributeValueFilter.bind(this);
             } else {
                 throw new TypeError(
                     `${this.constructor.name} expected a filter function or nil`
@@ -72,7 +72,7 @@ export class HTMLBuildAttributes
 
         if (attributeValueEscaper) {
             if (typeof attributeValueEscaper === 'function') {
-                escapeAttributeValueDescriptor.value = attributeValueEscaper;
+                escapeAttributeValueDescriptor.value = attributeValueEscaper.bind(this);
             } else {
                 throw new TypeError(
                     `${this.constructor.name} expected an escaper function or nil`
@@ -82,7 +82,7 @@ export class HTMLBuildAttributes
 
         if (attributesComparator) {
             if (typeof attributesComparator === 'function') {
-                compareAttributesDescriptor.value = attributesComparator;
+                compareAttributesDescriptor.value = attributesComparator.bind(this);
             } else {
                 throw new TypeError(
                     `${this.constructor.name} expected a comparator function or nil`

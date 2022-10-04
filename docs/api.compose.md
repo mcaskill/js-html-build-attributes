@@ -36,6 +36,8 @@ Its constructor accepts up to three arguments:
 * A [_comparator_ function](/docs/api.sort.md) for sorting collections
   of attributes.
 
+Each function will be bound to the class instance for convenience.
+
 ### Example
 
 ```js
