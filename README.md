@@ -83,9 +83,9 @@ escapeAttributeValue('{"id":1,"name":"Tim"}');
 
 > `@mcaskill/html-build-attributes/default.js`
 
-A preset instance of [`HTMLBuildAttributes`](/docs/api.compose.md) is available
-(featured above). It's equiped with basic filters, escape of basic HTML entities,
-and no sorting, which should cover most HTML tags.
+A preset instance of [`HTMLBuildAttributes`](/docs/api.compose.md)
+is available ([featured above](#usage)). It's equiped with basic filters and
+escape of common HTML entities, which should cover most HTML tags.
 
 * **`composeAttribute(name: string, value: unknown): string|null`**
 
