@@ -51,7 +51,8 @@ export function createOrderedAttributesComparator(expectedOrder: AttrOrder[]): A
     /**
      * @type {AttrMapComparator}
      */
-    function orderedAttributesComparator([ aName ]: AttrPair, [ bName ]: AttrPair): number {
+    function orderedAttributesComparator([ aName ]: AttrPair, [ bName ]: AttrPair): number
+    {
         let aIndexInOrderFlag = expectedOrder.findIndex((order) => isInExpectedOrder(order, aName));
         let bIndexInOrderFlag = expectedOrder.findIndex((order) => isInExpectedOrder(order, bName));
 

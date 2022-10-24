@@ -11,13 +11,15 @@ import type { AttrName } from './types';
  *
  * @property {*} [cause] - A property indicating the specific cause of the error.
  */
-interface ErrorInit {
+interface ErrorInit
+{
     cause?: unknown;
 }
 
 declare type ErrorInterface = Error;
 
-declare class Error implements ErrorInterface {
+declare class Error implements ErrorInterface
+{
     name: string;
     message: string;
     stack?: string;
@@ -41,7 +43,8 @@ export class FilterException extends Error
      * @param {string}    [message]
      * @param {ErrorInit} [options]
      */
-    constructor(message?: string, options?: ErrorInit) {
+    constructor(message?: string, options?: ErrorInit)
+    {
         super(message, options);
 
         Object.setPrototypeOf(this, new.target.prototype);

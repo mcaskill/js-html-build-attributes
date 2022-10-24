@@ -20,8 +20,8 @@ const filterTokenList = createFilterArray(filterToken, {
 }, ' ');
 
 const filterHTMLAttributeValue = createFilterResolver([
-    filterValue,
     filterTokenList,
+    filterValue,
     filterStringable,
 ], true);
 
