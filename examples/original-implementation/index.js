@@ -13,7 +13,7 @@ import {
  * @param   function [escape=escapeHTMLEntities]
  * @returns string
  */
-function html_build_attributes(attrs, escape = escapeHTMLEntities)
+export function html_build_attributes(attrs, escape = escapeHTMLEntities)
 {
     const html = [];
     for (let [ key, val ] of Object.entries(attrs)) {

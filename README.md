@@ -1,8 +1,12 @@
 # HTML Build Attributes
 
-> ES2017, TypeScript 4, Node 14
+> ES2017, TypeScript 4, Node 14
+
+---
 
 Generate a string of HTML attributes.
+
+> 🐢 In its current state, this library is [rather slow](#benchmarks). Use with caution or sparingly.
 
 ## Install
 
@@ -106,6 +110,27 @@ escape of common HTML entities, which should cover most HTML tags.
 
   A reference to [`HTMLBuildAttributes#filterAttributeValue()`](/docs/api.compose.md#htmlbuildattributesfilterattributevalue)
   from which you can approve, reject, and parse a value for an HTML attribute.
+
+## Benchmarks
+
+> Via the [`/benchmarks`](/benchmarks) directory with Node 14.18.3.
+
+Below are results between the [current](/src) and [original](/examples/original-implementation)
+implementations against a few simple use cases that cover most HTML attributes:
+
+```
+# Set #1
+  Original  x 1,352,212 ops/sec ±0.18% (99 runs sampled)
+  Current   x 9,687 ops/sec ±0.77% (71 runs sampled)
+
+# Set #2
+  Original  x 1,684,736 ops/sec ±0.14% (102 runs sampled)
+  Current   x 13,722 ops/sec ±0.43% (93 runs sampled)
+
+# Set #3
+  Original  x 953,387 ops/sec ±0.17% (101 runs sampled)
+  Current   x 29,369 ops/sec ±0.17% (97 runs sampled)
+```
 
 ## Implementations in other languages
 
