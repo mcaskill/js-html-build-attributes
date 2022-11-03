@@ -30,9 +30,7 @@ const htmlBuildAttributes = new HTMLBuildAttributes(
     escapeHTMLEntities
 );
 
-export const {
-    composeAttribute,
-    composeAttributes,
-    escapeAttributeValue,
-    filterAttributeValue,
-} = htmlBuildAttributes;
+export const composeAttribute     = htmlBuildAttributes.composeAttribute.bind(htmlBuildAttributes);
+export const composeAttributes    = htmlBuildAttributes.composeAttributes.bind(htmlBuildAttributes);
+export const escapeAttributeValue = htmlBuildAttributes.escapeAttributeValue!.bind(htmlBuildAttributes);
+export const filterAttributeValue = htmlBuildAttributes.filterAttributeValue!.bind(htmlBuildAttributes);
