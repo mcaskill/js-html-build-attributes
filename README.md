@@ -122,6 +122,8 @@ escape of common HTML entities, which should cover most HTML tags.
   A robust HTML entity encoder/decoder.
 * [`lodash.escape`](https://lodash.com/docs/4.17.15#escape) — 
   A basic HTML entity encoder.
+* [`posthtml-attrs-parser`](https://github.com/posthtml/posthtml-attrs-parser)
+  A PostHTML helper that provides an improved API to work with a tag's attributes
 
 ## See Also
 
