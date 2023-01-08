@@ -81,10 +81,10 @@
         "build:dts": "make build-dts",
         "clean": "make clean",
         "lint": "tsc --noEmit; eslint 'src/**/*.ts' 'tests/**/*.js' 'examples/**/*.js'",
-        "preversion": "npm run build",
-        "postversion": "git push --follow-tags",
         "test": "uvu tests",
-        "test:coverage": "c8 --per-file npm test"
+        "test:coverage": "c8 --per-file npm test",
+        "preversion": "npm test",
+        "version": "npm run build && git add -A dist"
     },
     "engines": {
         "node": ">=14"
