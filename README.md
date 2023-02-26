@@ -6,8 +6,6 @@
 
 Generate a string of HTML attributes.
 
-> 🐢 In its current state, this library is [rather slow](#benchmarks). Use with caution or sparingly.
-
 ## Install
 
 ```shell
