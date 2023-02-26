@@ -124,7 +124,7 @@ function createFilterArray(
                     ? `array separator is not defined for attribute [${name}]`
                     : 'array separator is not defined';
 
-                throw TypeError(message);
+                throw new TypeError(message);
             }
 
             return tokens.join(separator);
