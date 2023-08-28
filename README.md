@@ -113,23 +113,23 @@ escape of common HTML entities, which should cover most HTML tags.
 
 ## Benchmarks
 
-> Via the [`/benchmarks`](/benchmarks) directory with Node 14.18.3.
+> Via the [`/benchmarks`](/benchmarks) directory with Node 16.15.1.
 
 Below are results between the [current](/src) and [original](/examples/original-implementation)
 implementations against a few simple use cases that cover most HTML attributes:
 
 ```
 # Set #1
-  Original  x 1,352,212 ops/sec ±0.18% (99 runs sampled)
-  Current   x 9,687 ops/sec ±0.77% (71 runs sampled)
+  Original  x 1,318,419 ops/sec ±0.29% (95 runs sampled)
+  Current   x 6,410 ops/sec ±0.38% (90 runs sampled)
 
 # Set #2
-  Original  x 1,684,736 ops/sec ±0.14% (102 runs sampled)
-  Current   x 13,722 ops/sec ±0.43% (93 runs sampled)
+  Original  x 1,636,964 ops/sec ±0.11% (102 runs sampled)
+  Current   x 9,156 ops/sec ±0.55% (99 runs sampled)
 
 # Set #3
-  Original  x 953,387 ops/sec ±0.17% (101 runs sampled)
-  Current   x 29,369 ops/sec ±0.17% (97 runs sampled)
+  Original  x 951,264 ops/sec ±0.08% (102 runs sampled)
+  Current   x 19,340 ops/sec ±0.62% (99 runs sampled)
 ```
 
 ## Implementations in other languages
