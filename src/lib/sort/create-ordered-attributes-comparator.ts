@@ -35,8 +35,8 @@ export function createOrderedAttributesComparator(expectedOrder: AttrOrder[]): A
      */
     function isInExpectedOrder(order: AttrOrder, name: AttrName): boolean
     {
-        // ignore the standalone wildcard to allow
-        // other ordered attributes to match first
+        // Ignore the standalone wildcard to allow
+        // other ordered attributes to match first.
         if (order === '*') {
             return false;
         }
