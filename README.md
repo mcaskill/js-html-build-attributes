@@ -8,6 +8,8 @@ Generate a string of HTML attributes.
 
 ## Install
 
+Using [NPM](https://www.npmjs.com/):
+
 ```shell
 npm install @mcaskill/html-build-attributes
 ```
