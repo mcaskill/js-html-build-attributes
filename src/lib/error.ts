@@ -2,7 +2,7 @@
  * @file Attribute Errors
  */
 
-import type { AttrName } from './types';
+import type { AttrName } from './types.js';
 
 /**
  * Options that describe the error.

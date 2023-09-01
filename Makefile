@@ -1,4 +1,4 @@
-build: build-cjs build-esm build-dts
+build: build-cjs build-esm
 	@echo "Done"
 
 build-cjs: clean-cjs
@@ -9,21 +9,13 @@ build-esm: clean-esm
 	@echo "Building ESM"
 	@npx tsc -p dist/esm/tsconfig.json
 
-build-dts: clean-dts
-	@echo "Building DTS"
-	@npx tsc -p dist/dts/tsconfig.json
-
-clean: clean-cjs clean-esm clean-dts
+clean: clean-cjs clean-esm
 	@echo "Done"
 
 clean-cjs:
 	@echo "Cleaning CJS"
-	@rm -rf dist/cjs/*.js dist/cjs/*.js.map dist/cjs/lib 2> /dev/null
+	@rm -rf dist/cjs/*.js dist/cjs/*.js.map dist/cjs/*.d.ts dist/cjs/lib 2> /dev/null
 
 clean-esm:
 	@echo "Cleaning ESM"
-	@rm -rf dist/esm/*.js dist/esm/*.js.map dist/esm/lib 2> /dev/null
-
-clean-dts:
-	@echo "Cleaning DTS"
-	@rm -rf dist/dts/*.d.ts dist/dts/*.d.ts.map dist/dts/lib 2> /dev/null
+	@rm -rf dist/esm/*.js dist/esm/*.js.map dist/esm/*.d.ts dist/esm/lib 2> /dev/null

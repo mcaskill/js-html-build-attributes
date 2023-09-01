@@ -1,7 +1,11 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import { filterStringable } from '@mcaskill/html-build-attributes/lib/filter';
-import { TypeMismatchException } from '@mcaskill/html-build-attributes/lib/error';
+import {
+    filterStringable
+} from '@mcaskill/html-build-attributes/lib/filter/filter-stringable.js';
+import {
+    TypeMismatchException
+} from '@mcaskill/html-build-attributes/lib/error.js';
 
 /**
  * Filter Stringable

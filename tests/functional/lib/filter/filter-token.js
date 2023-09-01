@@ -1,10 +1,12 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import { filterToken } from '@mcaskill/html-build-attributes/lib/filter';
+import {
+    filterToken
+} from '@mcaskill/html-build-attributes/lib/filter/filter-token.js';
 import {
     BadValueException,
     TypeMismatchException,
-} from '@mcaskill/html-build-attributes/lib/error';
+} from '@mcaskill/html-build-attributes/lib/error.js';
 
 /**
  * Filter Token

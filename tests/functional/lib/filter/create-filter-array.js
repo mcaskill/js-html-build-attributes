@@ -1,7 +1,11 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
-import { createFilterArray } from '@mcaskill/html-build-attributes/lib/filter';
-import { TypeMismatchException } from '@mcaskill/html-build-attributes/lib/error';
+import {
+    createFilterArray
+} from '@mcaskill/html-build-attributes/lib/filter/create-filter-array.js';
+import {
+    TypeMismatchException
+} from '@mcaskill/html-build-attributes/lib/error.js';
 
 /**
  * Filter Array Factory

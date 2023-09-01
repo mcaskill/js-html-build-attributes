@@ -2,7 +2,7 @@ import type {
     AttrName,
     AttrValue,
     AttrValueFilter,
-} from '../types';
+} from '../types.js';
 
 /**
  * Creates a function to apply multiple filters to attribute values.

@@ -4,7 +4,7 @@ import {
     FilterException,
     BadValueException,
     TypeMismatchException,
-} from '@mcaskill/html-build-attributes/lib/error';
+} from '@mcaskill/html-build-attributes/lib/error.js';
 
 /**
  * Adds common Error class unit tests.

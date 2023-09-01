@@ -1,6 +1,8 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
-import { createOrderedAttributesComparator } from '@mcaskill/html-build-attributes/lib/sort';
+import {
+    createOrderedAttributesComparator
+} from '@mcaskill/html-build-attributes/lib/sort/create-ordered-attributes-comparator.js';
 
 /**
  * Ordered Attributes Comparator Factory

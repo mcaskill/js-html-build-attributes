@@ -21,56 +21,90 @@
         "templating"
     ],
     "type": "module",
+    "types": "./dist/esm/index.d.ts",
+    "main": "./dist/esm/index.js",
     "exports": {
         ".": {
-            "types": "./dist/dts/default.d.ts",
-            "import": "./dist/esm/default.js",
-            "require": "./dist/cjs/default.js"
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
         },
-        "./default": {
-            "types": "./dist/dts/default.d.ts",
-            "import": "./dist/esm/default.js",
-            "require": "./dist/cjs/default.js"
+        "./*": {
+            "import": {
+                "types": "./dist/esm/*.d.ts",
+                "default": "./dist/esm/*.js"
+            },
+            "require": {
+                "types": "./dist/cjs/*.d.ts",
+                "default": "./dist/cjs/*.js"
+            }
+        },
+        "./*.js": {
+            "import": {
+                "types": "./dist/esm/*.d.ts",
+                "default": "./dist/esm/*.js"
+            },
+            "require": {
+                "types": "./dist/cjs/*.d.ts",
+                "default": "./dist/cjs/*.js"
+            }
         },
         "./lib": {
-            "types": "./dist/dts/lib/index.d.ts",
-            "import": "./dist/esm/lib/index.js",
-            "require": "./dist/cjs/lib/index.js"
-        },
-        "./lib/*": {
-            "types": "./dist/dts/lib/*.d.ts",
-            "import": "./dist/esm/lib/*.js",
-            "require": "./dist/cjs/lib/*.js"
-        },
-        "./lib/**/*": {
-            "types": "./dist/dts/lib/**/*.d.ts",
-            "import": "./dist/esm/lib/**/*.js",
-            "require": "./dist/cjs/lib/**/*.js"
+            "import": {
+                "types": "./dist/esm/lib/index.d.ts",
+                "default": "./dist/esm/lib/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/lib/index.d.ts",
+                "default": "./dist/cjs/lib/index.js"
+            }
         },
         "./lib/escape": {
-            "types": "./dist/dts/lib/escape/index.d.ts",
-            "import": "./dist/esm/lib/escape/index.js",
-            "require": "./dist/cjs/lib/escape/index.js"
+            "import": {
+                "types": "./dist/esm/lib/escape/index.d.ts",
+                "default": "./dist/esm/lib/escape/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/lib/escape/index.d.ts",
+                "default": "./dist/cjs/lib/escape/index.js"
+            }
         },
         "./lib/filter": {
-            "types": "./dist/dts/lib/filter/index.d.ts",
-            "import": "./dist/esm/lib/filter/index.js",
-            "require": "./dist/cjs/lib/filter/index.js"
+            "import": {
+                "types": "./dist/esm/lib/filter/index.d.ts",
+                "default": "./dist/esm/lib/filter/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/lib/filter/index.d.ts",
+                "default": "./dist/cjs/lib/filter/index.js"
+            }
         },
         "./lib/sort": {
-            "types": "./dist/dts/lib/sort/index.d.ts",
-            "import": "./dist/esm/lib/sort/index.js",
-            "require": "./dist/cjs/lib/sort/index.js"
+            "import": {
+                "types": "./dist/esm/lib/sort/index.d.ts",
+                "default": "./dist/esm/lib/sort/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/lib/sort/index.d.ts",
+                "default": "./dist/cjs/lib/sort/index.js"
+            }
         },
         "./lib/util": {
-            "types": "./dist/dts/lib/util/index.d.ts",
-            "import": "./dist/esm/lib/util/index.js",
-            "require": "./dist/cjs/lib/util/index.js"
+            "import": {
+                "types": "./dist/esm/lib/util/index.d.ts",
+                "default": "./dist/esm/lib/util/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/lib/util/index.d.ts",
+                "default": "./dist/cjs/lib/util/index.js"
+            }
         }
     },
-    "main": "./dist/cjs/default.js",
-    "module": "./dist/esm/default.js",
-    "types": "./dist/dts/default.d.ts",
     "files": [
         "dist/**/*"
     ],
@@ -78,7 +112,6 @@
         "build": "make build",
         "build:cjs": "make build-cjs",
         "build:esm": "make build-esm",
-        "build:dts": "make build-dts",
         "clean": "make clean",
         "lint": "tsc --noEmit; eslint 'src/**/*.ts' 'tests/**/*.js' 'examples/**/*.js'",
         "test": "uvu tests",

@@ -2,7 +2,7 @@ import type {
     AttrName,
     AttrValue,
     AttrValueFilter,
-} from '../types';
+} from '../types.js';
 
 import { TypeMismatchException } from '../error.js';
 

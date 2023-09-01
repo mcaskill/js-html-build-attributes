@@ -1,6 +1,8 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
-import { createFilterChain } from '@mcaskill/html-build-attributes/lib/filter';
+import {
+    createFilterChain
+} from '@mcaskill/html-build-attributes/lib/filter/create-filter-chain.js';
 
 /**
  * Filter Chain Factory

@@ -3,7 +3,7 @@ import type {
     AttrPair,
     AttrMapComparator,
     AttrOrder,
-} from '../types';
+} from '../types.js';
 
 /**
  * Creates a comparison function to sort attributes

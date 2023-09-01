@@ -1,6 +1,6 @@
 import type {
     HTMLCharEscapeMap
-} from '../types';
+} from '../types.js';
 
 /**
  * @type {HTMLCharEscapeMap} - Map of characters to HTML entities.

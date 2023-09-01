@@ -1,7 +1,11 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
-import { createFilterResolver } from '@mcaskill/html-build-attributes/lib/filter';
-import { TypeMismatchException } from '@mcaskill/html-build-attributes/lib/error';
+import {
+    createFilterResolver
+} from '@mcaskill/html-build-attributes/lib/filter/create-filter-resolver.js';
+import {
+    TypeMismatchException
+} from '@mcaskill/html-build-attributes/lib/error.js';
 
 const uppercase  = (v) => v.toUpperCase();
 const capitalize = (v) => v.replace(/\b\w/g, (w) => w.toUpperCase());

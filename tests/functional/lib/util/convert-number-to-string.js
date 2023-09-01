@@ -1,6 +1,8 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import { convertNumberToString } from '@mcaskill/html-build-attributes/lib/util';
+import {
+    convertNumberToString
+} from '@mcaskill/html-build-attributes/lib/util/convert-number-to-string.js';
 
 test('should return empty string when value is not a finite number', () => {
     [

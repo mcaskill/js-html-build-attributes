@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert';
 import {
     isValidAttributeName,
     assertValidAttributeName,
-} from '@mcaskill/html-build-attributes/lib/util';
+} from '@mcaskill/html-build-attributes/lib/util/is-valid-attribute-name.js';
 
 /**
  * Attribute Name Validation

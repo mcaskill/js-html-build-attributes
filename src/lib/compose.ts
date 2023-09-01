@@ -8,7 +8,7 @@ import type {
     AttrValueEscaper,
     AttrValueFilter,
     AttrMapComparator,
-} from './types';
+} from './types.js';
 
 import { assertValidAttributeName } from './util/is-valid-attribute-name.js';
 

@@ -1,7 +1,7 @@
 import type {
     AttrName,
     AttrValue,
-} from '../types';
+} from '../types.js';
 
 import { TypeMismatchException } from '../error.js';
 

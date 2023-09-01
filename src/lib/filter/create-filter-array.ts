@@ -4,7 +4,7 @@ import type {
     AttrValueFilter,
     AttrValueSeparator,
     AttrValueSeparatorMap,
-} from '../types';
+} from '../types.js';
 
 import { TypeMismatchException } from '../error.js';
 

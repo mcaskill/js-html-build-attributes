@@ -1,6 +1,8 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
-import { HTMLBuildAttributes } from '@mcaskill/html-build-attributes/lib/compose';
+import {
+    HTMLBuildAttributes
+} from '@mcaskill/html-build-attributes/lib/compose.js';
 import {
     createFilterArray,
     createFilterResolver,

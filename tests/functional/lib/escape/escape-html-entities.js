@@ -4,7 +4,7 @@ import {
     escapeMap,
     regexUnescaped,
     escapeHTMLEntities,
-} from '@mcaskill/html-build-attributes/lib/escape';
+} from '@mcaskill/html-build-attributes/lib/escape/escape-html-entities.js';
 
 /**
  * Escape Map
