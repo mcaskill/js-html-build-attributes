@@ -1,0 +1,9 @@
+{
+    "private": true,
+    "name": "@mcaskill/test-esm-pkg",
+    "type": "module",
+    "main": "index.js",
+    "devDependencies": {
+        "@mcaskill/html-build-attributes": "file:../../../"
+    }
+}

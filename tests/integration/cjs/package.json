@@ -1,0 +1,9 @@
+{
+    "private": true,
+    "name": "@mcaskill/test-cjs-pkg",
+    "type": "commonjs",
+    "main": "index.js",
+    "devDependencies": {
+        "@mcaskill/html-build-attributes": "file:../../../"
+    }
+}
