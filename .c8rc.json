@@ -1,4 +1,5 @@
 {
+    "per-file": true,
     "branches": 80,
     "functions": 80,
     "lines": 80,

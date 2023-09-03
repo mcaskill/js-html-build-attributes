@@ -115,7 +115,8 @@
         "clean": "make clean",
         "lint": "tsc --noEmit; eslint 'src/**/*.ts' 'tests/**/*.js' 'examples/**/*.js'",
         "test": "uvu tests",
-        "test:coverage": "c8 --per-file npm test",
+        "test:coverage": "c8 npm test",
+        "test:report": "c8 --reporter=text --reporter=html --skip-full npm test",
         "preversion": "npm test",
         "version": "npm run build && git add -A dist"
     },
