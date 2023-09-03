@@ -1,4 +1,5 @@
 import type {
+    AttrName,
     HTMLCharEscapeMap
 } from '../types.js';
 
@@ -27,7 +28,7 @@ export const regexHasUnescaped = RegExp(regexUnescaped.source);
 /**
  * @type {AttrValueEscaper}
  */
-export function escapeHTMLEntities(string: string): string
+export function escapeHTMLEntities(string: string, name?: AttrName): string
 {
     if (string && regexHasUnescaped.test(string)) {
         return string.replace(regexUnescaped, (chr) => escapeMap[chr]);

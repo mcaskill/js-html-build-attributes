@@ -151,7 +151,7 @@ export class HTMLBuildAttributes
 
             case 'string': {
                 if (this.escapeAttributeValue) {
-                    value = this.escapeAttributeValue(value);
+                    value = this.escapeAttributeValue(value, name);
                 }
 
                 return `${name}="${value}"`;

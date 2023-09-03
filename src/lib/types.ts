@@ -95,10 +95,11 @@ export type AttrMapComparator = (a: AttrPair, b: AttrPair) => number;
  *
  * @callback AttrValueEscaper
  *
- * @param   {string} value
+ * @param   {string}   value
+ * @param   {AttrName} [name]
  * @returns {string}
  */
-export type AttrValueEscaper = (value: string) => string;
+export type AttrValueEscaper = (value: string, name?: AttrName) => string;
 
 /**
  * Either null or undefined.

@@ -105,6 +105,7 @@ import {
         'class':           [],
         'aria-labelledby': [ 'ThemeLight', 'ThemeLbl' ],
         'onclick':         'toggleTheme(this.id);',
+        'data-reverse':    'hello',
     };
 
     /**
@@ -127,7 +128,9 @@ import {
      *
      * @type {AttrValueEscaper}
      */
-    const escapeAttrValue = (value) => value.toUpperCase();
+    const escapeAttrValue = (value, name) => (name === 'data-reverse')
+        ? value.split('').reverse().join('')
+        : value.toUpperCase();
 
     /**
      * Compares attributes to sort.
@@ -170,6 +173,7 @@ import {
             'aria-disabled',
             'id="ThemeLight"',
             'onclick="toggleTheme(this.id);"',
+            'data-reverse="hello"',
         ].join(' ');
 
         assert.is(output, expects);
@@ -184,6 +188,7 @@ import {
             'aria-disabled="TRUE"',
             'aria-labelledby="THEMELIGHT THEMELBL"',
             'aria-pressed="FALSE"',
+            'data-reverse="olleh"',
             'disabled',
             'id="THEMELIGHT"',
             'onclick="TOGGLETHEME(THIS.ID);"',
