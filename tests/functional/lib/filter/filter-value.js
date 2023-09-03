@@ -31,9 +31,9 @@ import {
         });
     });
 
-    test('should return null if value is nil', () => {
-        assert.is(filterValue(null), null);
-        assert.is(filterValue(undefined), null);
+    test('should return false if value is nil', () => {
+        assert.is(filterValue(null), false);
+        assert.is(filterValue(undefined), false);
     });
 
     test('should return value if boolean', () => {

@@ -12,7 +12,7 @@ a `TypeError` will be thrown.
 > For all API functions listed:
 >
 > * `AttrName` is a string and represents an attribute name.
-> * `AttrValue` is a string, boolean, or null, and represents a filtered attribute value.
+> * `AttrValue` is a string or boolean and represents a filtered attribute value.
 > * `T` represents any data type.
 
 ## `HTMLBuildAttributes()`
@@ -167,7 +167,7 @@ htmlBuildAttributes.escapeAttributeValue('{"id":1,"name":"Tim"}');
 
 ## `HTMLBuildAttributes#filterAttributeValue()`
 
-Approve, reject, and parse a value for an HTML attribute.
+Reject, approve, and parse a value for an HTML attribute.
 
 This method is defined from the constructor's `attributeValueFilter` parameter.
 
@@ -191,7 +191,10 @@ htmlBuildAttributes.filterAttributeValue(true);
 // → true
 
 htmlBuildAttributes.filterAttributeValue(false);
-// → null
+// → false
+
+htmlBuildAttributes.filterAttributeValue(null);
+// → false
 ```
 
 [syntax-attribute-name]: https://html.spec.whatwg.org/dev/syntax.html#syntax-attribute-name

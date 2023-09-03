@@ -141,10 +141,10 @@ import {
         assert.is(filter([ 'a', 'b', 'c' ]), 'a b c');
     });
 
-    test('should return null if value is empty', () => {
+    test('should return false if array is empty', () => {
         const filter = createFilterArray((v) => v, ' ');
 
-        assert.is(filter([]), null);
+        assert.is(filter([]), false);
     });
 
     test.run();

@@ -13,7 +13,7 @@ See [Error API documentation](/docs/api.error.md) for more information.
 > For all API functions listed:
 >
 > * `AttrName` is a string and represents an attribute name.
-> * `AttrValue` is a string, boolean, or null, and represents a filtered attribute value.
+> * `AttrValue` is a string or boolean and represents a filtered attribute value.
 > * `T` represents any data type.
 
 ## `createFilterArray()`

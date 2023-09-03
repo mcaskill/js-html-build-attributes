@@ -18,7 +18,7 @@ import { convertNumberToString } from '../util/convert-number-to-string.js';
 export function filterValue(value: unknown, name?: AttrName): AttrValue
 {
     if (value == null) {
-        return null;
+        return false;
     }
 
     if (typeof value === 'boolean') {

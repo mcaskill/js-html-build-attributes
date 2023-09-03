@@ -14,14 +14,13 @@ export type AttrName = string;
  *
  * Either:
  *
- * - `true`: The filtered value (should render attribute).
- * - `false`: The filtered value (should reject attribute).
- * - `string`: The filtered value (should render attribute).
- * - `null`: The value is none (should reject attribute).
+ * - `string`: Should render attribute.
+ * - `true`: Should render attribute.
+ * - `false`: Should reject attribute.
  *
- * @typedef {?(string|boolean)} AttrValue
+ * @typedef {string|boolean} AttrValue
  */
-export type AttrValue = string | boolean | null;
+export type AttrValue = string | boolean;
 
 /**
  * Map of HTML attribute names and values.

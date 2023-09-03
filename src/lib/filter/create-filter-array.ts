@@ -102,7 +102,7 @@ function createFilterArray(
 
         if (Array.isArray(value)) {
             if (!value.length) {
-                return null;
+                return false;
             }
 
             const tokens = [];
