@@ -5,6 +5,7 @@
 import type {
     AttrMap,
     AttrName,
+    AttrPair,
     AttrValueEscaper,
     AttrValueFilter,
     AttrMapComparator,
@@ -104,8 +105,7 @@ export class HTMLBuildAttributes
      */
     composeAttributes(attributes: AttrMap): string | null
     {
-        /** @type {Array<[ AttrName, unknown ]>} */
-        const attrs = Object.entries(attributes);
+        const attrs = Object.entries(attributes) as AttrPair[];
 
         if (this.compareAttributes) {
             attrs.sort(this.compareAttributes);

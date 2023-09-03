@@ -65,11 +65,11 @@ export class FilterException extends Error
     /**
      * Describes the attribute name or value.
      *
-     * @param   {unknown}  [value]
+     * @param   {unknown}  value
      * @param   {AttrName} [name]
      * @returns {string}
      */
-    static describeAttr(value?: unknown, name?: AttrName): string
+    static describeAttr(value: unknown, name?: AttrName): string
     {
         if (name != null) {
             return `attribute [${name}]`;

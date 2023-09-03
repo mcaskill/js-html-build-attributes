@@ -53,28 +53,43 @@ function addFilterExceptionUnitTests(test, errName, errClass)
         assert.match(err.message, 'attribute [id] is not filterable');
     });
 
-    test(`should create error with the message "value is not filterable"`, () => {
+    test(`should create error with the message "attribute [*] is not concatenable"`, () => {
+        const err = FilterException.createNotConcatenable('main', 'id');
+
+        assert.match(err.message, 'attribute [id] is not concatenable');
+    });
+
+    const creatorDataSet = [
+        [ undefined,       'undefined' ],
+        [ null,            'null'      ],
+        [ 'hello',         'string'    ],
+        [ 42,              'number'    ],
+        [ true,            'boolean'   ],
+        [ {},              'object'    ],
+        [ (new Date),      'object'    ],
+        [ [ 1, 2, 3 ],     'array'     ],
         [
-            [ undefined,       'undefined' ],
-            [ null,            'null'      ],
-            [ 'hello',         'string'    ],
-            [ 42,              'number'    ],
-            [ true,            'boolean'   ],
-            [ {},              'object'    ],
-            [ (new Date),      'object'    ],
-            [ (() => {}),      'function'  ],
-            [ (Symbol('foo')), 'symbol'    ],
-        ].forEach(([ value, expects ]) => {
+            /* c8 ignore next */
+            (() => {}),
+            'function',
+        ],
+        [ (Symbol('foo')), 'symbol'    ],
+    ];
+
+    test(`should create error with the message "* is not filterable"`, () => {
+        creatorDataSet.forEach(([ value, expects ]) => {
             const err = FilterException.createNotFilterable(value);
 
             assert.match(err.message, `${expects} is not filterable`);
         });
     });
 
-    test(`should create error with the message "array is not filterable"`, () => {
-        const err = FilterException.createNotConcatenable([ 1, 2, 3 ]);
+    test(`should create error with the message "* is not concatenable"`, () => {
+        creatorDataSet.forEach(([ value, expects ]) => {
+            const err = FilterException.createNotConcatenable(value);
 
-        assert.match(err.message, 'array is not concatenable');
+            assert.match(err.message, `${expects} is not concatenable`);
+        });
     });
 
     test.run();
