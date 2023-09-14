@@ -84,23 +84,13 @@ const reverse    = (v) => [ ...v ].reverse().join('');
     });
 
     test('should throw unexpected errors from filters', () => {
-        const filterA = createFilterResolver([
+        const filter = createFilterResolver([
             filterThrowError,
             filterThrowMismatch,
         ]);
 
         assert.throws(
-            () => filterA('abc'),
-            (err) => (err === unexpectedError)
-        );
-
-        const filterB = createFilterResolver([
-            filterThrowError,
-            filterThrowMismatch,
-        ], true);
-
-        assert.throws(
-            () => filterB('abc'),
+            () => filter('abc'),
             (err) => (err === unexpectedError)
         );
     });
@@ -119,22 +109,6 @@ const reverse    = (v) => [ ...v ].reverse().join('');
         ]);
 
         assert.is(filterB('hello world'), 'dlrow olleh');
-    });
-
-    test('should process called function value through filter functions', () => {
-        const filterA = createFilterResolver([
-            capitalize,
-            reverse,
-        ], true);
-
-        assert.is(filterA(() => () => 'hello world'), 'Hello World');
-
-        const filterB = createFilterResolver([
-            reverse,
-            capitalize,
-        ], true);
-
-        assert.is(filterB(() => () => 'hello world'), 'dlrow olleh');
     });
 
     test.run();

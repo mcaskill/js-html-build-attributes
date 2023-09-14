@@ -5,6 +5,7 @@
 import {
     HTMLBuildAttributes,
     createFilterArray,
+    createFilterFunction,
     createFilterResolver,
     escapeHTMLEntities,
     filterStringable,
@@ -19,11 +20,13 @@ const filterTokenList = createFilterArray(filterToken, {
     'srcset': ',',
 }, ' ');
 
-const filterHTMLAttributeValue = createFilterResolver([
-    filterTokenList,
-    filterValue,
-    filterStringable,
-], true);
+const filterHTMLAttributeValue = createFilterFunction(
+    createFilterResolver([
+        filterTokenList,
+        filterValue,
+        filterStringable,
+    ])
+);
 
 const htmlBuildAttributes = new HTMLBuildAttributes(
     filterHTMLAttributeValue,

@@ -9,16 +9,13 @@ import { TypeMismatchException } from '../error.js';
 /**
  * Creates a resolver function to filter attribute values.
  *
- * @param   {AttrValueFilter[]} filters             - One or more attribute value filter functions.
- * @param   {?boolean}          [useFilterFunction] - If an attribute value is a function,
- *     filter its return value.
+ * @param   {AttrValueFilter[]} filters - One or more attribute value filter functions.
  * @throws  {TypeError} If the array of filters is too small.
  * @throws  {TypeError} If the filter is not a function.
  * @returns {AttrValueFilter}
  */
 export function createFilterResolver(
-    filters: AttrValueFilter[],
-    useFilterFunction?: boolean
+    filters: AttrValueFilter[]
 ): AttrValueFilter {
     if (!Array.isArray(filters) || filters.length < 1) {
         throw new TypeError(
@@ -57,31 +54,6 @@ export function createFilterResolver(
         }
 
         throw TypeMismatchException.createNotFilterable(value, name);
-    }
-
-    /**
-     * Filters a value that is a function.
-     *
-     * The function is called and its returned value is
-     * passed through the collection of function filters.
-     *
-     * @type   {AttrValueFilter}
-     * @throws {TypeMismatchException}
-     */
-    function filterFunction(value: unknown, name?: AttrName): AttrValue
-    {
-        if (typeof value === 'function') {
-            return filterResolver(value(), name);
-        }
-
-        throw TypeMismatchException.createNotFilterable(value, name);
-    }
-
-    if (useFilterFunction) {
-        /**
-         * Call the filter function first.
-         */
-        filters.unshift(filterFunction);
     }
 
     return filterResolver;

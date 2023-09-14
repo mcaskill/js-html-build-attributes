@@ -103,6 +103,57 @@ reverseThenCapitalize('hello world');
 // → Dlrow Olleh
 ```
 
+## `createFilterFunction()`
+
+> [`@mcaskill/html-build-attributes/lib/filter/create-filter-function.js`](/src/lib/filter/create-filter-function.ts)
+
+Creates a function that applies a filter to the given value or it's returned
+result if it's a function.
+
+### Syntax
+
+```ts
+createFilterFunction(
+  filter: function
+): function
+```
+
+### Examples
+
+```js
+import {
+  createFilterFunction
+} from '@mcaskill/html-build-attributes/lib/filter/create-filter-function.js';
+
+import {
+  TypeMismatchException
+} from '@mcaskill/html-build-attributes/lib/error.js';
+
+const filterNumber = (value, name) => {
+  if (typeof value === 'number') {
+    return value;
+  }
+
+  throw TypeMismatchException.createNotFilterable(value, name);
+};
+
+const filterValueOrClosure = createFilterFunction(
+  filterNumber
+);
+
+filterValueOrClosure(42);
+// → 42
+
+filterValueOrClosure(() => (42 * 2));
+// → 84
+
+filterValueOrClosure('hello');
+// → TypeError<string is not filterable>
+
+filterValueOrClosure(() => 'hello');
+// → TypeError<string is not filterable>
+```
+
 ## `createFilterResolver()`
 
 > [`@mcaskill/html-build-attributes/lib/filter/create-filter-resolver.js`](/src/lib/filter/create-filter-resolver.ts)
@@ -114,8 +165,7 @@ value from the first filter that returns a value.
 
 ```ts
 createFilterResolver(
-  filters: function[],
-  useFilterFunction?: boolean
+  filters: function[]
 ): function
 ```
 
@@ -149,7 +199,7 @@ const filterNumber = (value, name) => {
 const filterByType = createFilterResolver([
   filterString,
   filterNumber,
-], true);
+]);
 
 filterByType('hello');
 // → hello
@@ -157,18 +207,12 @@ filterByType('hello');
 filterByType(42);
 // → 42
 
-filterByType(() => (42 * 2));
-// → 84
-
 filterByType(true);
 // → TypeError<boolean is not filterable>
 
 filterByType(true, 'test');
 // → TypeError<attribute [test] is not filterable>
 ```
-
-Optionally, the resolver can check if the input value is a function and filter
-its return value.
 
 ## `filterStringable()`
 
