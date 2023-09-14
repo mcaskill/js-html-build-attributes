@@ -15,8 +15,9 @@ reflect the new release of the plugin.
 
 ## Notes
 
-1. `npm version <newversion>` — Build the distribution files and tag the source package.
-2. `npm publish` — Publish the distribution files to the NPM registry.
+1. Add the new version and details of it to the [`CHANGELOG.md`](../CHANGELOG.md).
+2. `npm version <newversion>` — Build the distribution files and tag the source package.
+3. `npm publish` — Publish the distribution files to the NPM registry.
 
 ### Node Version
 
@@ -24,6 +25,11 @@ reflect the new release of the plugin.
 2. [`package.json`](../package.json):
     1. `engines.node`
 3. [`README.md`](../README.md)
+
+#### Benchmarks
+
+1. [`README.md#benchmarks`](../benchmarks/README.md)
+2. [`benchmarks/README.md`](../benchmarks/README.md)
 
 ### NPM Version
 
