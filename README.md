@@ -120,16 +120,16 @@ implementations against a few simple use cases that cover most HTML attributes:
 
 ```
 # Set #1
-  Original  x 1,316,183 ops/sec ±0.54% (96 runs sampled)
-  Current   x 6,405 ops/sec ±0.36% (92 runs sampled)
+  Original  x 1,321,465 ops/sec ±0.16% (98 runs sampled)
+  Current   x 13,828 ops/sec ±0.35% (87 runs sampled)
 
 # Set #2
-  Original  x 1,644,423 ops/sec ±0.12% (101 runs sampled)
-  Current   x 9,071 ops/sec ±0.75% (98 runs sampled)
+  Original  x 1,640,239 ops/sec ±0.13% (101 runs sampled)
+  Current   x 20,588 ops/sec ±0.29% (99 runs sampled)
 
 # Set #3
-  Original  x 946,032 ops/sec ±0.13% (102 runs sampled)
-  Current   x 19,239 ops/sec ±0.76% (97 runs sampled)
+  Original  x 946,995 ops/sec ±0.12% (101 runs sampled)
+  Current   x 37,336 ops/sec ±0.23% (96 runs sampled)
 ```
 
 ## Implementations in other languages
