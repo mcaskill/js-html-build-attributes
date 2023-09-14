@@ -4,6 +4,7 @@
 import type {
     AttrName,
     AttrValue,
+    AttrValueFilter,
 } from '../types.js';
 
 import {
