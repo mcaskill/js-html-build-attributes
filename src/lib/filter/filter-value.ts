@@ -1,3 +1,6 @@
+/**
+ * @typedef {import("../types.js").AttrValueFilter} AttrValueFilter
+ */
 import type {
     AttrName,
     AttrValue,
