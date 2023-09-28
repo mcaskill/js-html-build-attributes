@@ -1,3 +1,7 @@
+/**
+ * @typedef {import("../types.js").AttrMapComparator} AttrMapComparator
+ * @typedef {import("../types.js").AttrOrder} AttrOrder
+ */
 import type {
     AttrName,
     AttrPair,

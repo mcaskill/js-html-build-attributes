@@ -73,11 +73,19 @@ export type HTMLCharEscapeMap = Record<string, string>;
  *
  * @callback AttrValueFilter
  *
- * @param   {*}        value
- * @param   {AttrName} [name]
+ * @param   {*}                        value
+ * @param   {?AttrName}                [name]
+ * @param   {?AttrValueFilterFallback} [fallback]
  * @returns {AttrValue}
  */
-export type AttrValueFilter = (value: unknown, name?: AttrName) => AttrValue;
+export type AttrValueFilter = (value: unknown, name?: AttrName, fallback?: AttrValueFilterFallback) => AttrValue;
+
+/**
+ * A fallback filter function or attribute value.
+ *
+ * @typedef {AttrValueFilter|AttrValue} AttrValueFilterFallback
+ */
+export type AttrValueFilterFallback = AttrValueFilter | AttrValue;
 
 /**
  * Compares attributes to sort.

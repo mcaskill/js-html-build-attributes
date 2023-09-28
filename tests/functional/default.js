@@ -15,6 +15,7 @@ const input = {
     'data-type':      null,
     'data-max-files': 3,
     'data-datetime':  now,
+    'data-array':     [ true, false, null ],
     'data-options':   {
         a: 1,
         b: 0,
@@ -36,6 +37,7 @@ const expected = {
     'data-type':      null,
     'data-max-files': 'data-max-files="3"',
     'data-datetime':  `data-datetime="${now.toISOString()}"`,
+    'data-array':     `data-array="[true,false,null]"`,
     'data-options':   'data-options="{&quot;a&quot;:1,&quot;b&quot;:0,&quot;c&quot;:null,&quot;d&quot;:true,&quot;e&quot;:false,&quot;f&quot;:[1,2,3]}"',
 };
 

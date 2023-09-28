@@ -4,21 +4,27 @@
 import type {
     AttrName,
     AttrValue,
-    AttrValueFilter,
+    AttrValueFilterFallback,
 } from '../types.js';
 
-import { TypeMismatchException } from '../error.js';
+import {
+    filterFallback
+} from './filter-fallback.js';
 
-import { isStringable } from '../util/is-stringable.js';
+import {
+    isStringable
+} from '../util/is-stringable.js';
 
 /**
  * Filters a value into its string representation or into a JSON string.
  *
- * @type   {AttrValueFilter}
- * @throws {TypeMismatchException}
+ * @type {AttrValueFilter}
  */
-export function filterStringable(value: unknown, name?: AttrName): AttrValue
-{
+export function filterStringable(
+    value: unknown,
+    name?: AttrName,
+    fallback: AttrValueFilterFallback = false
+): AttrValue {
     if (value != null) {
         if (!Array.isArray(value)) {
             if (value instanceof Date) {
@@ -33,5 +39,5 @@ export function filterStringable(value: unknown, name?: AttrName): AttrValue
         return JSON.stringify(value);
     }
 
-    throw TypeMismatchException.createNotFilterable(value, name);
+    return filterFallback(value, name, fallback);
 }

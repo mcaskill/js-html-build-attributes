@@ -1,9 +1,7 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
-    FilterException,
-    BadValueException,
-    TypeMismatchException,
+    FilterError,
 } from '@mcaskill/html-build-attributes/lib/error.js';
 
 /**
@@ -14,7 +12,7 @@ import {
  * @param   {Error}  errClass - The error class.
  * @returns {void}
  */
-function addFilterExceptionUnitTests(test, errName, errClass)
+function addErrorUnitTests(test, errName, errClass)
 {
     const err = new errClass;
 
@@ -39,25 +37,13 @@ function addFilterExceptionUnitTests(test, errName, errClass)
  * Filter Attribute Error Messages
  */
 {
-    const test = suite('FilterException');
+    const test = suite('FilterError');
 
     test('should extend Error', () => {
-        assert.instance((new FilterException), Error);
+        assert.instance((new FilterError), Error);
     });
 
-    addFilterExceptionUnitTests(test, 'FilterException', FilterException);
-
-    test(`should create error with the message "attribute [*] is not filterable"`, () => {
-        const err = FilterException.createNotFilterable('main', 'id');
-
-        assert.match(err.message, 'attribute [id] is not filterable');
-    });
-
-    test(`should create error with the message "attribute [*] is not concatenable"`, () => {
-        const err = FilterException.createNotConcatenable('main', 'id');
-
-        assert.match(err.message, 'attribute [id] is not concatenable');
-    });
+    addErrorUnitTests(test, 'FilterError', FilterError);
 
     const creatorDataSet = [
         [ undefined,       'undefined' ],
@@ -65,9 +51,9 @@ function addFilterExceptionUnitTests(test, errName, errClass)
         [ 'hello',         'string'    ],
         [ 42,              'number'    ],
         [ true,            'boolean'   ],
-        [ {},              'object'    ],
-        [ (new Date),      'object'    ],
-        [ [ 1, 2, 3 ],     'array'     ],
+        [ {},              'Object'    ],
+        [ (new Date),      'Date'      ],
+        [ [ 1, 2, 3 ],     'Array'     ],
         [
             /* c8 ignore next */
             (() => {}),
@@ -78,37 +64,17 @@ function addFilterExceptionUnitTests(test, errName, errClass)
 
     test(`should create error with the message "* is not filterable"`, () => {
         creatorDataSet.forEach(([ value, expects ]) => {
-            const err = FilterException.createNotFilterable(value);
+            const err = FilterError.create('{attr} is not filterable', value);
 
             assert.match(err.message, `${expects} is not filterable`);
         });
     });
 
-    test(`should create error with the message "* is not concatenable"`, () => {
-        creatorDataSet.forEach(([ value, expects ]) => {
-            const err = FilterException.createNotConcatenable(value);
+    test(`should create error with the message "attribute [*] is not filterable"`, () => {
+        const err = FilterError.create('{attr} is not filterable', 'main', 'id');
 
-            assert.match(err.message, `${expects} is not concatenable`);
-        });
+        assert.match(err.message, 'attribute [id] is not filterable');
     });
 
     test.run();
 }
-
-/**
- * Custom Attribute Error
- */
-[
-    [ 'BadValueException',     BadValueException ],
-    [ 'TypeMismatchException', TypeMismatchException ],
-].forEach(([ errName, errClass ]) => {
-    const test = suite(`${errName}`);
-
-    test('should extend FilterException', () => {
-        assert.instance((new errClass), FilterException);
-    });
-
-    addFilterExceptionUnitTests(test, errName, errClass);
-
-    test.run();
-});

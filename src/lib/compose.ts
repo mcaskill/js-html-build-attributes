@@ -11,7 +11,9 @@ import type {
     AttrMapComparator,
 } from './types.js';
 
-import { assertValidAttributeName } from './util/is-valid-attribute-name.js';
+import {
+    assertValidAttributeName
+} from './util/is-valid-attribute-name.js';
 
 /**
  * HTML attributes composer.

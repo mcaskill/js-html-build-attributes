@@ -1,9 +1,9 @@
 import {
-    BadValueException,
+    FilterError,
     HTMLBuildAttributes,
-    TypeMismatchException,
-    createFilterArray,
+    createFilterList,
     escapeHTMLEntities,
+    filterFallback,
 } from '@mcaskill/html-build-attributes';
 
 /**
@@ -11,19 +11,15 @@ import {
  */
 const regexHasWhitespace = /\s/;
 
-const filterTokenList = createFilterArray((value, name) => {
+const filterTokenList = createFilterList((value, name, fallback = false) => {
     switch (typeof value) {
         case 'string': {
             if (!value.length) {
-                throw new BadValueException(
-                    `${name || 'string'} must not be empty`
-                );
+                throw FilterError.create('{attr} must not be empty', value, name);
             }
 
             if (regexHasWhitespace.test(value)) {
-                throw new BadValueException(
-                    `${name || 'string'} must not contain whitespace`
-                );
+                throw FilterError.create('{attr} must not contain whitespace', value, name);
             }
 
             return value;
@@ -36,7 +32,7 @@ const filterTokenList = createFilterArray((value, name) => {
         }
     }
 
-    throw TypeMismatchException.createNotFilterable(value, name);
+    return filterFallback(value, name, fallback);
 }, ' ');
 
 const htmlBuildAttributes = new HTMLBuildAttributes(

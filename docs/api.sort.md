@@ -2,7 +2,7 @@
 
 ## `createOrderedAttributesComparator()`
 
-> [`@mcaskill/html-build-attributes/lib/sort/create-ordered-attributes-comparator.js`](/src/lib/sort/create-ordered-attributes-comparator.ts)
+> [`@mcaskill/html-build-attributes/lib/sort/sort-ordered-attributes.js`](/src/lib/sort/sort-ordered-attributes.ts)
 
 Creates a comparison function to sort attributes alphabetically
 with support for regular expressions and a wildcard.
@@ -15,7 +15,7 @@ these at a specific index among the ordered attributes.
 ```ts
 import {
   createOrderedAttributesComparator
-} from '@mcaskill/html-build-attributes/lib/sort/create-ordered-attributes-comparator.js';
+} from '@mcaskill/html-build-attributes/lib/sort/sort-ordered-attributes.js';
 
 createOrderedAttributesComparator(expectedOrder: string[]): function
 ```

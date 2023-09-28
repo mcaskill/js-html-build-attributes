@@ -4,8 +4,8 @@ import {
     HTMLBuildAttributes
 } from '@mcaskill/html-build-attributes/lib/compose.js';
 import {
-    createFilterArray,
-    createFilterResolver,
+    createFilterList,
+    createFilterMiddleware,
     filterToken,
     filterValue,
 } from '@mcaskill/html-build-attributes/lib/filter';
@@ -111,12 +111,12 @@ import {
     /**
      * @type {AttrValueFilter}
      */
-    const filterTokenList = createFilterArray(filterToken, ' ');
+    const filterTokenList = createFilterList(filterToken, ' ');
 
     /**
      * @type {AttrValueFilter}
      */
-    const filterAttributeValue = createFilterResolver([
+    const filterAttributeValue = createFilterMiddleware([
         filterValue,
         filterTokenList,
     ]);

@@ -1,8 +1,8 @@
 import {
     HTMLBuildAttributes,
-    TypeMismatchException,
-    createFilterArray,
+    createFilterList,
     escapeHTMLEntities,
+    filterFallback,
 } from '@mcaskill/html-build-attributes';
 
 /**
@@ -25,7 +25,7 @@ const allowedValuesOfIFrameSandbox = [
     'allow-downloads',
 ];
 
-const filterTokenList = createFilterArray((value, name) => {
+const filterTokenList = createFilterList((value, name, fallback = false) => {
     if (name === 'sandbox') {
         if (allowedValuesOfIFrameSandbox.includes(value)) {
             return value;
@@ -48,7 +48,7 @@ const filterTokenList = createFilterArray((value, name) => {
         }
     }
 
-    throw TypeMismatchException.createNotFilterable(value, name);
+    return filterFallback(value, name, fallback);
 }, ' ');
 
 const htmlBuildAttributes = new HTMLBuildAttributes(

@@ -1,1 +1,1 @@
-export * from './create-ordered-attributes-comparator.js';
+export * from './sort-ordered-attributes.js';

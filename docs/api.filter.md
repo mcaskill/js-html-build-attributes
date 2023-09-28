@@ -5,42 +5,126 @@
 The filter modules are a collection of functions and function factories
 to approve, reject, and mutate a value.
 
-Filters will throw a `TypeMismatchException` if the value is rejected
-or a `BadValueException` if the value is invalid.
-
-See [Error API documentation](/docs/api.error.md) for more information.
-
 > For all API functions listed:
 >
+> * `T` represents any data type.
 > * `AttrName` is a string and represents an attribute name.
 > * `AttrValue` is a string or boolean and represents a filtered attribute value.
-> * `T` represents any data type.
+> * `AttrValueFilter` is a function signature representing the filter.
 
-## `createFilterArray()`
+## `AttrValueFilter`
 
-> [`@mcaskill/html-build-attributes/lib/filter/create-filter-array.js`](/src/lib/filter/create-filter-array.ts)
-
-Creates a function that applies a filter to each item of the array and
-concatenates the list into a string separated by a customizable delimiter.
+This type represents the signature of a filter function.
 
 ### Syntax
 
 ```ts
-createFilterArray(
-  filter: function,
-  oneOrManySeparators: string|object<string, string>,
-  fallbackSeparator?: string
-): function
+(value: T, name?: AttrName, fallback?: AttrValueFilter | AttrValue) => AttrValue
+```
+
+### Example
+
+```js
+function filterNumber(value, name, fallback = false) {
+  if (typeof value === 'number') {
+    return value;
+  }
+
+  return fallback;
+}
+```
+
+For a custom filter to play nice as [middleware](#createfiltermiddleware),
+it is recommended to use the [`filterFallback()`](#filterfallback) function
+to resolve any fallbacks that might be a function:
+
+```js
+import {
+    filterFallback,
+} from '@mcaskill/html-build-attributes/lib/filter/filter-fallback.js';
+
+function filterNumber(value, name, fallback = false) {
+  if (typeof value === 'number') {
+    return value;
+  }
+
+  return filterFallback(value, name, fallback);
+}
+```
+
+## `createFilterCallable()`
+
+> [`@mcaskill/html-build-attributes/lib/filter/filter-callable.js`](/src/lib/filter/filter-callable.ts)
+
+Creates a [filter function](#attrvaluefilter) that applies the given filter to
+a given value or it's returned result if the value is a function.
+
+### Syntax
+
+```ts
+createFilterCallable(
+  filter: AttrValueFilter
+): AttrValueFilter
 ```
 
 ### Examples
 
 ```js
 import {
-  createFilterArray
-} from '@mcaskill/html-build-attributes/lib/filter/create-filter-array.js';
+  createFilterCallable
+} from '@mcaskill/html-build-attributes/lib/filter/filter-function.js';
 
-const filterTokenList = createFilterArray(filterToken, {
+const filterNumber = (value, name, fallback = false) => {
+  if (typeof value === 'number') {
+    return value;
+  }
+
+  return fallback;
+};
+
+const filterValueOrClosure = createFilterCallable(
+  filterNumber
+);
+
+filterValueOrClosure(42);
+// → 42
+
+filterValueOrClosure(() => (42 * 2));
+// → 84
+
+filterValueOrClosure('hello');
+// → false
+
+filterValueOrClosure(() => 'hello');
+// → false
+```
+
+## `createFilterList()`
+
+> [`@mcaskill/html-build-attributes/lib/filter/filter-list.js`](/src/lib/filter/filter-list.ts)
+
+Creates a [filter function](#attrvaluefilter) that applies a filter to
+each item of the array and concatenates the list into a string separated by
+a customizable delimiter.
+
+### Syntax
+
+```ts
+createFilterList(
+  filter: AttrValueFilter,
+  oneOrManySeparators: string | object<AttrName, string>,
+  fallbackSeparator?: string
+): AttrValueFilter
+```
+
+### Examples
+
+```js
+import {
+  createFilterList
+} from '@mcaskill/html-build-attributes/lib/filter/filter-list.js';
+
+const filterTokenList = createFilterList(filterToken, {
   'coords': ',',
 }, ':');
 
@@ -50,7 +134,7 @@ filterTokenList([ 'a', 'b', 'c' ]);
 filterTokenList([ 'a', 'b', 'c' ], 'coords');
 // → a,b,c
 
-const scopedFilterTokenList = createFilterArray(filterToken, {
+const scopedFilterTokenList = createFilterList(filterToken, {
   'class': ' ',
 });
 
@@ -64,154 +148,108 @@ scopedFilterTokenList([ 'a', 'b', 'c' ], 'rel');
 // → TypeError<attribute [rel] separator is not defined>
 ```
 
-## `createFilterChain()`
+## `createFilterMiddleware()`
 
-> [`@mcaskill/html-build-attributes/lib/filter/create-filter-chain.js`](/src/lib/filter/create-filter-chain.ts)
+> [`@mcaskill/html-build-attributes/lib/filter/filter-middleware.js`](/src/lib/filter/filter-middleware.ts)
 
-Creates a function that applies a collection of filters to a value.
+Creates a [filter function](#attrvaluefilter) from a collection of filters that
+returns the filtered value from the first filter that returns a value.
 
 ### Syntax
 
 ```ts
-createFilterChain(filters: function[]): function
+createFilterMiddleware(
+  filters: AttrValueFilter[]
+): AttrValueFilter
 ```
 
 ### Examples
 
 ```js
 import {
-  createFilterChain
-} from '@mcaskill/html-build-attributes/lib/filter/create-filter-chain.js';
+  createFilterMiddleware
+} from '@mcaskill/html-build-attributes/lib/filter/filter-middleware.js';
 
-const capitalize = (v) => v.replace(/\b\w/g, (w) => w.toUpperCase());
-const reverse    = (v) => [ ...v ].reverse().join('');
-
-const capitalizeThenReverse = createFilterChain([
-  capitalize,
-  reverse,
-]);
-
-capitalizeThenReverse('hello world');
-// → dlroW olleH
-
-const reverseThenCapitalize = createFilterChain([
-  reverse,
-  capitalize,
-]);
-
-reverseThenCapitalize('hello world');
-// → Dlrow Olleh
-```
-
-## `createFilterFunction()`
-
-> [`@mcaskill/html-build-attributes/lib/filter/create-filter-function.js`](/src/lib/filter/create-filter-function.ts)
-
-Creates a function that applies a filter to the given value or it's returned
-result if it's a function.
-
-### Syntax
-
-```ts
-createFilterFunction(
-  filter: function
-): function
-```
-
-### Examples
-
-```js
-import {
-  createFilterFunction
-} from '@mcaskill/html-build-attributes/lib/filter/create-filter-function.js';
-
-import {
-  TypeMismatchException
-} from '@mcaskill/html-build-attributes/lib/error.js';
-
-const filterNumber = (value, name) => {
-  if (typeof value === 'number') {
-    return value;
-  }
-
-  throw TypeMismatchException.createNotFilterable(value, name);
-};
-
-const filterValueOrClosure = createFilterFunction(
-  filterNumber
-);
-
-filterValueOrClosure(42);
-// → 42
-
-filterValueOrClosure(() => (42 * 2));
-// → 84
-
-filterValueOrClosure('hello');
-// → TypeError<string is not filterable>
-
-filterValueOrClosure(() => 'hello');
-// → TypeError<string is not filterable>
-```
-
-## `createFilterResolver()`
-
-> [`@mcaskill/html-build-attributes/lib/filter/create-filter-resolver.js`](/src/lib/filter/create-filter-resolver.ts)
-
-Creates a function from a collection of filters that returns the filtered
-value from the first filter that returns a value.
-
-### Syntax
-
-```ts
-createFilterResolver(
-  filters: function[]
-): function
-```
-
-### Examples
-
-```js
-import {
-  createFilterResolver
-} from '@mcaskill/html-build-attributes/lib/filter/create-filter-resolver.js';
-
-import {
-  TypeMismatchException
-} from '@mcaskill/html-build-attributes/lib/error.js';
-
-const filterString = (value, name) => {
+const filterString = (value, name, next) => {
   if (typeof value === 'string') {
     return value;
   }
 
-  throw TypeMismatchException.createNotFilterable(value, name);
+  return next(value, name);
 };
 
-const filterNumber = (value, name) => {
+const filterNumber = (value, name, next) => {
   if (typeof value === 'number') {
     return value;
   }
 
-  throw TypeMismatchException.createNotFilterable(value, name);
+  return next(value, name);
 };
 
-const filterByType = createFilterResolver([
+const filterByType = createFilterMiddleware([
   filterString,
   filterNumber,
 ]);
 
 filterByType('hello');
-// → hello
+// → 'hello'
 
 filterByType(42);
 // → 42
 
-filterByType(true);
-// → TypeError<boolean is not filterable>
+filterByType([]);
+// → false
 
-filterByType(true, 'test');
-// → TypeError<attribute [test] is not filterable>
+filterByType(true);
+// → false
+
+filterByType(true, 'test', 'fallback');
+// → 'fallback'
+```
+
+## `filterFallback()`
+
+> [`@mcaskill/html-build-attributes/lib/filter/filter-fallback.js`](/src/lib/filter/filter-fallback.ts)
+
+This function resolves the fallback of an attribute value filter.
+
+If the fallback argument is a function it is assumed to be another filter
+and is called with the value and name arguments, otherwise it is assumed
+to be the value to return.
+
+### Syntax
+
+```ts
+filterFallback(
+  value: T,
+  name?: AttrName,
+  fallback?: AttrValueFilter | AttrValue
+): AttrValue
+```
+
+### Examples
+
+```js
+import {
+  filterFallback
+} from '@mcaskill/html-build-attributes/lib/filter/filter-fallback.js';
+
+function filterNumber(value, name, fallback = false) {
+  if (typeof value === 'number') {
+    return value;
+  }
+
+  return filterFallback(value, name, fallback);
+}
+
+filterNumber('hello', 'value');
+// → false
+
+filterNumber('hello', 'value', 0);
+// → 0
+
+filterNumber('hello', 'value', (value, name) => Number.parseInt(value));
+// → NaN
 ```
 
 ## `filterStringable()`
@@ -328,8 +366,6 @@ filterValue(value: T, name?: AttrName): AttrValue
 ### Description
 
 If the value is:
-
-1. _nullish_ (`null` or `undefined`), the attribute is discarded.
 
 1. a _boolean_ and
 

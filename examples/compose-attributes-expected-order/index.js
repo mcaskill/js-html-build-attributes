@@ -1,8 +1,8 @@
 import {
     HTMLBuildAttributes,
     createOrderedAttributesComparator,
-    createFilterArray,
-    createFilterResolver,
+    createFilterList,
+    createFilterMiddleware,
     escapeHTMLEntities,
     filterStringable,
     filterToken,
@@ -62,9 +62,9 @@ const compareAttributes = createOrderedAttributesComparator([
     /^data-.+$/,
 ]);
 
-const filterTokenList = createFilterArray(filterToken, ' ');
+const filterTokenList = createFilterList(filterToken, ' ');
 
-const filterAttributeValue = createFilterResolver([
+const filterAttributeValue = createFilterMiddleware([
     filterValue,
     filterTokenList,
     filterStringable,

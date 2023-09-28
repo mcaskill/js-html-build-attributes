@@ -4,37 +4,42 @@
 import type {
     AttrName,
     AttrValue,
-    AttrValueFilter,
+    AttrValueFilterFallback,
 } from '../types.js';
 
 import {
-    BadValueException,
-    TypeMismatchException,
+    filterFallback
+} from './filter-fallback.js';
+
+import {
+    FilterError
 } from '../error.js';
 
-import { convertNumberToString } from '../util/convert-number-to-string.js';
+import {
+    convertNumberToString
+} from '../util/convert-number-to-string.js';
 
 /**
  * Filters a value that is a string, number, boolean, or BigInt.
  *
- * @type {AttrValueFilter}
+ * @type   {AttrValueFilter}
+ * @throws {FilterError}
  */
-export function filterValue(value: unknown, name?: AttrName): AttrValue
-{
-    if (value == null) {
-        return false;
-    }
-
-    if (typeof value === 'boolean') {
-        if (name && name.startsWith('aria-')) {
-            return value.toString();
-        }
-
-        return value;
-    }
-
+export function filterValue(
+    value: unknown,
+    name?: AttrName,
+    fallback: AttrValueFilterFallback = false
+): AttrValue {
     switch (typeof value) {
         case 'string': {
+            return value;
+        }
+
+        case 'boolean': {
+            if (name && name.startsWith('aria-')) {
+                return value.toString();
+            }
+
             return value;
         }
 
@@ -44,14 +49,12 @@ export function filterValue(value: unknown, name?: AttrName): AttrValue
 
         case 'number': {
             if (!Number.isFinite(value)) {
-                throw new BadValueException(
-                    `${name || 'number'} is not finite`
-                );
+                throw FilterError.create('{attr} is not finite', value, name);
             }
 
             return convertNumberToString(value);
         }
     }
 
-    throw TypeMismatchException.createNotFilterable(value, name);
+    return filterFallback(value, name, fallback);
 }

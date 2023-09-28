@@ -37,7 +37,7 @@ declare class Error implements ErrorInterface
 /**
  * Represents an error with a value to be filtered.
  */
-export class FilterException extends Error
+export class FilterError extends Error
 {
     /**
      * @param {string}    [message]
@@ -63,6 +63,26 @@ export class FilterException extends Error
     }
 
     /**
+     * Creates an error with message where placeholder `{attr}`
+     * is substituded with name or value.
+     *
+     * @param   {string}    message
+     * @param   {unknown}   value
+     * @param   {AttrName}  [name]
+     * @param   {ErrorInit} [options]
+     * @returns {FilterError}
+     */
+    static create(message: string, value: unknown, name?: AttrName, options?: ErrorInit): FilterError
+    {
+        const attr = this.describeAttr(value, name);
+
+        return new this(
+            message.replace('{attr}', attr),
+            options
+        );
+    }
+
+    /**
      * Describes the attribute name or value.
      *
      * @param   {unknown}  value
@@ -77,62 +97,14 @@ export class FilterException extends Error
 
         const type = (typeof value);
 
-        switch (type) {
-            case 'object':
-                if (Array.isArray(value)) {
-                    return 'array';
-                }
-
-                return (value == null) ? 'null' : type;
+        if (type !== 'object') {
+            return type;
         }
 
-        return type;
+        if (value == null) {
+            return 'null';
+        }
+
+        return value.constructor.name;
     }
-
-    /**
-     * Creates an error with a generic "is not filterable" message.
-     *
-     * @param   {unknown}   [value]
-     * @param   {AttrName}  [name]
-     * @param   {ErrorInit} [options]
-     * @returns {FilterException}
-     */
-    static createNotFilterable(value?: unknown, name?: AttrName, options?: ErrorInit): FilterException
-    {
-        const attr = this.describeAttr(value, name);
-
-        return new this(`${attr} is not filterable`, options);
-    }
-
-    /**
-     * Creates an error with a generic "is not concatenable" message.
-     *
-     * @param   {unknown}   [value]
-     * @param   {AttrName}  [name]
-     * @param   {ErrorInit} [options]
-     * @returns {FilterException}
-     */
-    static createNotConcatenable(value?: unknown, name?: AttrName, options?: ErrorInit): FilterException
-    {
-        const attr = this.describeAttr(value, name);
-
-        return new this(`${attr} is not concatenable`, options);
-    }
-}
-
-/**
- * Represents a value that the filter is unable to convert.
- */
-export class BadValueException extends FilterException
-{
-}
-
-/**
- * Represents a value that does not conform to the filter's constraints.
- *
- * Indicates the filter does not accept the value and should maybe
- * try another filter.
- */
-export class TypeMismatchException extends FilterException
-{
 }

@@ -1,16 +1,21 @@
-import { test } from 'uvu';
+import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
-    filterStringable
+    filterStringable,
 } from '@mcaskill/html-build-attributes/lib/filter/filter-stringable.js';
-import {
-    TypeMismatchException
-} from '@mcaskill/html-build-attributes/lib/error.js';
+
+// Generic attribute name.
+const attr = 'test';
+
+// Placeholder value used as fallback in testing.
+const EOF = Symbol('EOF');
 
 /**
  * Filter Stringable
  */
 {
+    const test = suite('filterStringable');
+
     class Person {
         constructor(id, name) {
             this.id = id;
@@ -18,24 +23,25 @@ import {
         }
     }
 
-    test('should throw a TypeMismatchException if value does not match filter', () => {
-        const assertion = () => filterStringable(null);
+    test('should return the default fallback argument', () => {
+        const output = filterStringable();
 
-        assert.throws(
-            assertion,
-            (err) => err instanceof TypeMismatchException
-        );
-
-        assert.throws(
-            assertion,
-            /^null is not filterable$/
-        );
+        assert.is(output, false);
     });
 
-    test('should throw unexpected error from JSON.stringify', () => {
+    test('should return the custom fallback argument', () => {
+        [
+            null,
+            undefined,
+        ].forEach((input) => {
+            assert.is(filterStringable(input, attr, EOF), EOF);
+        });
+    });
+
+    test('should allow JSON.stringify to throw errors', () => {
         assert.throws(
             () => filterStringable({ x: 2n }),
-            (err) => err instanceof TypeError
+            (err) => (err instanceof TypeError)
         );
     });
 
@@ -48,8 +54,8 @@ import {
             [ [ NaN, null, Infinity], '[null,null,null]'      ],
             [ { x: 5, y: 6 },         '{"x":5,"y":6}'         ],
             [ (new Person(1, 'Tim')), '{"id":1,"name":"Tim"}' ],
-        ].forEach(([ value, expects ]) => {
-            assert.is(filterStringable(value), expects);
+        ].forEach(([ input, expects ]) => {
+            assert.is(filterStringable(input), expects);
         });
     });
 
