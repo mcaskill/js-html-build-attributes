@@ -1,4 +1,10 @@
 {
+    "exclude": [
+        "**/*.d.ts",
+        "coverage/**",
+        "dist/cjs/**",
+        "test{,s}/**"
+    ],
     "per-file": true,
     "branches": 80,
     "functions": 80,
