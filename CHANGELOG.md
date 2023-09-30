@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.0
+
+Breaking changes
+
+* Replace underperformant throw/catch pattern with a classic fallback/middleware pattern.
+* Replace `createFilterResolver()` with `createFilterMiddleware()`.
+* Replace `createFilterArray()` with `createFilterList()`.
+* Add `createFilterCallable()` for a more versatile name; this filter is not recursive unlike its predecessor `filterFunction()`.
+* Add `filterFallback()` to resolve the fallback argument with support for the middleware pattern.
+* Remove obsolete `createFilterChain()`.
+* Fix TS/JSDoc reference.
+
 ## 0.1.3
 
 Note: With Node v16+, the V8 coverage is reporting false-negatives.
