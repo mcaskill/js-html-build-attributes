@@ -14,8 +14,8 @@ clean: clean-cjs clean-esm
 
 clean-cjs:
 	@echo "Cleaning CJS"
-	@rm -rf dist/cjs/*.js dist/cjs/*.js.map dist/cjs/*.d.ts dist/cjs/lib 2> /dev/null
+	@rm -rf dist/cjs/*.js dist/cjs/*.js.map dist/cjs/*.d.ts dist/cjs/*.d.ts.map dist/cjs/lib 2> /dev/null
 
 clean-esm:
 	@echo "Cleaning ESM"
-	@rm -rf dist/esm/*.js dist/esm/*.js.map dist/esm/*.d.ts dist/esm/lib 2> /dev/null
+	@rm -rf dist/esm/*.js dist/esm/*.js.map dist/esm/*.d.ts dist/esm/*.d.ts.map dist/esm/lib 2> /dev/null

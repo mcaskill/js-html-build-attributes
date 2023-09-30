@@ -1,6 +1,6 @@
 # HTML Build Attributes
 
-> ES2017, TypeScript 4, Node 16
+> ES2018, TypeScript 5, Node 16
 
 ---
 

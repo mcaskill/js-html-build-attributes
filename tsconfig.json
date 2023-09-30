@@ -2,13 +2,19 @@
     "compilerOptions": {
         "declaration": true,
         "declarationMap": true,
-        "esModuleInterop": true,
+        "esModuleInterop": false,
         "forceConsistentCasingInFileNames": true,
         "noEmit": true,
+        "noEmitOnError": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
         "outDir": "./dist",
         "sourceMap": true,
         "strict": true,
-        "target": "ES2017"
+        "target": "ES2018"
     },
     "include": [
         "./src"

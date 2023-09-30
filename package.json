@@ -21,92 +21,81 @@
         "templating"
     ],
     "type": "module",
-    "types": "./dist/esm/index.d.ts",
-    "main": "./dist/esm/index.js",
     "exports": {
         ".": {
-            "import": {
-                "types": "./dist/esm/index.d.ts",
-                "default": "./dist/esm/index.js"
-            },
             "require": {
                 "types": "./dist/cjs/index.d.ts",
                 "default": "./dist/cjs/index.js"
-            }
-        },
-        "./*": {
-            "import": {
-                "types": "./dist/esm/*.d.ts",
-                "default": "./dist/esm/*.js"
             },
-            "require": {
-                "types": "./dist/cjs/*.d.ts",
-                "default": "./dist/cjs/*.js"
+            "default": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
             }
         },
         "./*.js": {
-            "import": {
-                "types": "./dist/esm/*.d.ts",
-                "default": "./dist/esm/*.js"
-            },
             "require": {
                 "types": "./dist/cjs/*.d.ts",
                 "default": "./dist/cjs/*.js"
+            },
+            "default": {
+                "types": "./dist/esm/*.d.ts",
+                "default": "./dist/esm/*.js"
             }
         },
         "./lib": {
-            "import": {
-                "types": "./dist/esm/lib/index.d.ts",
-                "default": "./dist/esm/lib/index.js"
-            },
             "require": {
                 "types": "./dist/cjs/lib/index.d.ts",
                 "default": "./dist/cjs/lib/index.js"
+            },
+            "default": {
+                "types": "./dist/esm/lib/index.d.ts",
+                "default": "./dist/esm/lib/index.js"
             }
         },
         "./lib/escape": {
-            "import": {
-                "types": "./dist/esm/lib/escape/index.d.ts",
-                "default": "./dist/esm/lib/escape/index.js"
-            },
             "require": {
                 "types": "./dist/cjs/lib/escape/index.d.ts",
                 "default": "./dist/cjs/lib/escape/index.js"
+            },
+            "default": {
+                "types": "./dist/esm/lib/escape/index.d.ts",
+                "default": "./dist/esm/lib/escape/index.js"
             }
         },
         "./lib/filter": {
-            "import": {
-                "types": "./dist/esm/lib/filter/index.d.ts",
-                "default": "./dist/esm/lib/filter/index.js"
-            },
             "require": {
                 "types": "./dist/cjs/lib/filter/index.d.ts",
                 "default": "./dist/cjs/lib/filter/index.js"
+            },
+            "default": {
+                "types": "./dist/esm/lib/filter/index.d.ts",
+                "default": "./dist/esm/lib/filter/index.js"
             }
         },
         "./lib/sort": {
-            "import": {
-                "types": "./dist/esm/lib/sort/index.d.ts",
-                "default": "./dist/esm/lib/sort/index.js"
-            },
             "require": {
                 "types": "./dist/cjs/lib/sort/index.d.ts",
                 "default": "./dist/cjs/lib/sort/index.js"
+            },
+            "default": {
+                "types": "./dist/esm/lib/sort/index.d.ts",
+                "default": "./dist/esm/lib/sort/index.js"
             }
         },
         "./lib/util": {
-            "import": {
-                "types": "./dist/esm/lib/util/index.d.ts",
-                "default": "./dist/esm/lib/util/index.js"
-            },
             "require": {
                 "types": "./dist/cjs/lib/util/index.d.ts",
                 "default": "./dist/cjs/lib/util/index.js"
+            },
+            "default": {
+                "types": "./dist/esm/lib/util/index.d.ts",
+                "default": "./dist/esm/lib/util/index.js"
             }
         }
     },
     "files": [
-        "dist/**/*"
+        "dist/**/*.d.ts",
+        "dist/**/*.js"
     ],
     "scripts": {
         "build": "make build",
