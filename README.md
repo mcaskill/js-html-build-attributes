@@ -147,8 +147,10 @@ implementations against a few simple use cases that cover most HTML attributes:
   A robust HTML entity encoder/decoder.
 * [`lodash.escape`](https://lodash.com/docs/4.17.15#escape) — 
   A basic HTML entity encoder.
-* [`posthtml-attrs-parser`](https://github.com/posthtml/posthtml-attrs-parser)
-  A PostHTML helper that provides an improved API to work with a tag's attributes
+* [`posthtml-attrs-parser`](https://github.com/posthtml/posthtml-attrs-parser) — 
+  A PostHTML helper that provides an improved API to work with a tag's attributes.
+* [`fabianmichael/kirby-template-attributes`](https://github.com/fabianmichael/kirby-template-attributes) — 
+  A PHP plugin for Kirby that provides a helper to compose attribute in templates.
 
 ## See Also
 
