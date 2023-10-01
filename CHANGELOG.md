@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+* Revert NPM manifest to include `main` and `types` matching package module type.
+
 ## 0.2.1
 
 * Revert NPM exports back to `import`/`require` instead of `require`/`default`.
