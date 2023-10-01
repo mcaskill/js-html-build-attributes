@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+* Revert NPM exports back to `import`/`require` instead of `require`/`default`.
+* Add `sideEffects` hint to NPM manifest.
+* Remove source maps from distribution files since we do not include source.
+
 ## 0.2.0
 
 Breaking changes
