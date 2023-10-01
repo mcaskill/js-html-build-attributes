@@ -21,6 +21,8 @@
         "templating"
     ],
     "type": "module",
+    "types": "./dist/esm/index.d.ts",
+    "main": "./dist/esm/index.js",
     "sideEffects": false,
     "exports": {
         ".": {
