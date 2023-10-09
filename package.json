@@ -1,119 +1,20 @@
 {
-    "name": "@mcaskill/html-build-attributes",
-    "version": "0.2.2",
-    "description": "Generate a string of HTML attributes.",
-    "license": "MIT",
-    "homepage": "https://github.com/mcaskill/js-html-build-attributes",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/mcaskill/js-html-build-attributes.git"
-    },
-    "author": {
-        "name": "Chauncey McAskill",
-        "email": "chauncey@mcaskill.ca",
-        "homepage": "https://github.com/mcaskill"
-    },
-    "keywords": [
-        "front-end",
-        "function",
-        "html",
-        "javascript",
-        "templating"
-    ],
+    "private": true,
     "type": "module",
-    "types": "./dist/esm/index.d.ts",
-    "main": "./dist/esm/index.js",
-    "sideEffects": false,
-    "exports": {
-        ".": {
-            "import": {
-                "types": "./dist/esm/index.d.ts",
-                "default": "./dist/esm/index.js"
-            },
-            "require": {
-                "types": "./dist/cjs/index.d.ts",
-                "default": "./dist/cjs/index.js"
-            }
-        },
-        "./*.js": {
-            "import": {
-                "types": "./dist/esm/*.d.ts",
-                "default": "./dist/esm/*.js"
-            },
-            "require": {
-                "types": "./dist/cjs/*.d.ts",
-                "default": "./dist/cjs/*.js"
-            }
-        },
-        "./lib": {
-            "import": {
-                "types": "./dist/esm/lib/index.d.ts",
-                "default": "./dist/esm/lib/index.js"
-            },
-            "require": {
-                "types": "./dist/cjs/lib/index.d.ts",
-                "default": "./dist/cjs/lib/index.js"
-            }
-        },
-        "./lib/escape": {
-            "import": {
-                "types": "./dist/esm/lib/escape/index.d.ts",
-                "default": "./dist/esm/lib/escape/index.js"
-            },
-            "require": {
-                "types": "./dist/cjs/lib/escape/index.d.ts",
-                "default": "./dist/cjs/lib/escape/index.js"
-            }
-        },
-        "./lib/filter": {
-            "import": {
-                "types": "./dist/esm/lib/filter/index.d.ts",
-                "default": "./dist/esm/lib/filter/index.js"
-            },
-            "require": {
-                "types": "./dist/cjs/lib/filter/index.d.ts",
-                "default": "./dist/cjs/lib/filter/index.js"
-            }
-        },
-        "./lib/sort": {
-            "import": {
-                "types": "./dist/esm/lib/sort/index.d.ts",
-                "default": "./dist/esm/lib/sort/index.js"
-            },
-            "require": {
-                "types": "./dist/cjs/lib/sort/index.d.ts",
-                "default": "./dist/cjs/lib/sort/index.js"
-            }
-        },
-        "./lib/util": {
-            "import": {
-                "types": "./dist/esm/lib/util/index.d.ts",
-                "default": "./dist/esm/lib/util/index.js"
-            },
-            "require": {
-                "types": "./dist/cjs/lib/util/index.d.ts",
-                "default": "./dist/cjs/lib/util/index.js"
-            }
-        }
-    },
-    "files": [
-        "dist/**/*.d.ts",
-        "dist/**/*.js"
+    "name": "@mcaskill/html-build-attributes",
+    "workspaces": [
+        "./dist"
     ],
     "scripts": {
-        "build": "make build",
-        "build:cjs": "make build-cjs",
-        "build:esm": "make build-esm",
+        "build": "make publishable",
         "clean": "make clean",
-        "lint": "tsc --noEmit; eslint 'src/**/*.ts' 'tests/**/*.js' 'examples/**/*.js'",
+        "lint": "make lint",
         "test": "uvu tests",
+        "pretest": "make testable",
         "test:coverage": "c8 npm test",
         "test:report": "c8 --reporter=text --reporter=html --skip-full npm test",
         "preversion": "npm test",
         "version": "npm run build && git add -A dist"
-    },
-    "engines": {
-        "node": ">=16"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^6.4.1",
@@ -122,5 +23,8 @@
         "eslint": "^8.48.0",
         "typescript": "^5.2.2",
         "uvu": "^0.5.6"
+    },
+    "engines": {
+        "node": ">=16"
     }
 }

@@ -1,0 +1,102 @@
+{
+    "name": "@mcaskill/html-build-attributes",
+    "version": "0.2.2",
+    "description": "Generate a string of HTML attributes.",
+    "license": "MIT",
+    "homepage": "https://github.com/mcaskill/js-html-build-attributes",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mcaskill/js-html-build-attributes.git"
+    },
+    "author": {
+        "name": "Chauncey McAskill",
+        "email": "chauncey@mcaskill.ca",
+        "homepage": "https://github.com/mcaskill"
+    },
+    "keywords": [
+        "front-end",
+        "function",
+        "html",
+        "javascript",
+        "templating"
+    ],
+    "type": "module",
+    "types": "./esm/index.d.ts",
+    "main": "./esm/index.js",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./esm/index.d.ts",
+                "default": "./esm/index.js"
+            },
+            "require": {
+                "types": "./cjs/index.d.cts",
+                "default": "./cjs/index.cjs"
+            }
+        },
+        "./*.js": {
+            "import": {
+                "types": "./esm/*.d.ts",
+                "default": "./esm/*.js"
+            },
+            "require": {
+                "types": "./cjs/*.d.cts",
+                "default": "./cjs/*.cjs"
+            }
+        },
+        "./lib": {
+            "import": {
+                "types": "./esm/lib/index.d.ts",
+                "default": "./esm/lib/index.js"
+            },
+            "require": {
+                "types": "./cjs/lib/index.d.cts",
+                "default": "./cjs/lib/index.cjs"
+            }
+        },
+        "./lib/escape": {
+            "import": {
+                "types": "./esm/lib/escape/index.d.ts",
+                "default": "./esm/lib/escape/index.js"
+            },
+            "require": {
+                "types": "./cjs/lib/escape/index.d.cts",
+                "default": "./cjs/lib/escape/index.cjs"
+            }
+        },
+        "./lib/filter": {
+            "import": {
+                "types": "./esm/lib/filter/index.d.ts",
+                "default": "./esm/lib/filter/index.js"
+            },
+            "require": {
+                "types": "./cjs/lib/filter/index.d.cts",
+                "default": "./cjs/lib/filter/index.cjs"
+            }
+        },
+        "./lib/sort": {
+            "import": {
+                "types": "./esm/lib/sort/index.d.ts",
+                "default": "./esm/lib/sort/index.js"
+            },
+            "require": {
+                "types": "./cjs/lib/sort/index.d.cts",
+                "default": "./cjs/lib/sort/index.cjs"
+            }
+        },
+        "./lib/util": {
+            "import": {
+                "types": "./esm/lib/util/index.d.ts",
+                "default": "./esm/lib/util/index.js"
+            },
+            "require": {
+                "types": "./cjs/lib/util/index.d.cts",
+                "default": "./cjs/lib/util/index.cjs"
+            }
+        }
+    },
+    "sideEffects": false,
+    "engines": {
+        "node": ">=16"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "private": true,
+    "name": "@mcaskill/test-pkg",
+    "type": "module",
+    "devDependencies": {
+        "@mcaskill/html-build-attributes": "file:../../dist"
+    }
+}

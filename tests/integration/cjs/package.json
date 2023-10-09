@@ -4,6 +4,6 @@
     "type": "commonjs",
     "main": "index.js",
     "devDependencies": {
-        "@mcaskill/html-build-attributes": "file:../../../"
+        "@mcaskill/html-build-attributes": "file:../../../dist"
     }
 }
