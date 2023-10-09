@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3
+
+* Reorganize TypeScript building and NPM distribution.
+
 ## 0.2.2
 
 * Revert NPM manifest to include `main` and `types` matching package module type.
