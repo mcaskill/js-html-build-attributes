@@ -1,7 +1,8 @@
 {
     "private": true,
-    "type": "module",
     "name": "@mcaskill/html-build-attributes",
+    "version": "",
+    "type": "module",
     "workspaces": [
         "./dist"
     ],

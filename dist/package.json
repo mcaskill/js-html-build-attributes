@@ -6,7 +6,7 @@
     "homepage": "https://github.com/mcaskill/js-html-build-attributes",
     "repository": {
         "type": "git",
-        "url": "https://github.com/mcaskill/js-html-build-attributes.git"
+        "url": "git+https://github.com/mcaskill/js-html-build-attributes.git"
     },
     "author": {
         "name": "Chauncey McAskill",
