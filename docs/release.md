@@ -16,8 +16,9 @@ reflect the new release of the plugin.
 ## Notes
 
 1. Add the new version and details of it to the [`CHANGELOG.md`](../CHANGELOG.md).
-2. `npm version <newversion>` — Build the distribution files and tag the source package.
-3. `npm publish` — Publish the distribution files to the NPM registry.
+2. `npm version <newversion> ---no-git-tag-version --workspaces` — Build the distribution files.
+3. Commit `CHANGELOG.md`, `package-lock.json`, and `dist/package.json`, and tag the repository.
+4. `npm publish --workspaces` — Publish the distribution files to the NPM registry.
 
 ### Node Version
 
