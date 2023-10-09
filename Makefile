@@ -1,4 +1,4 @@
-publishable: publishable-cjs publishable-esm
+publishable: publishable-cjs publishable-esm copy-files
 	@echo "Done"
 
 publishable-cjs: clean-cjs _publishable-cjs _fix-cjs
@@ -11,6 +11,11 @@ testable: testable-cjs testable-esm
 testable-cjs: clean-cjs _testable-cjs _fix-cjs
 
 testable-esm: clean-esm _testable-esm
+
+copy-files:
+	@echo "Copy repository files for publishing"
+	@cp README.md dist
+	@cp LICENSE dist
 
 clean: clean-cjs clean-esm
 	@echo "Done"

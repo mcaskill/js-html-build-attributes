@@ -1,7 +1,6 @@
-/coverage/
-/dist/*/*
-!/dist/*/package.json
-!/dist/*/tsconfig.json
-/node_modules/
+coverage/
+dist/
+!dist/package.json
+node_modules/
 *.log*
 report.*.json
