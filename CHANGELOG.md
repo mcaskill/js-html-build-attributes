@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.4
+
+* Ensure `README.md` and `LICENSE` files are included in NPM distribution.
+
 ## 0.2.3
 
 * Reorganize TypeScript building and NPM distribution.
