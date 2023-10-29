@@ -1,6 +1,28 @@
 /**
- * @file TypeScript Declarations
+ * @file Library TypeScript Declarations
  */
+
+/**
+ * Map of HTML attribute names and values.
+ *
+ * A primitive interpretation of
+ * {@link https://developer.mozilla.org/en-US/docs/Web/API/NamedNodeMap `NamedNodeMap`}
+ * and {@link https://developer.mozilla.org/en-US/docs/Web/API/Attr `Attr`}.
+ *
+ * @typedef {Object<AttrName, unknown>} AttrMap
+ */
+export type AttrMap = Record<AttrName, unknown>;
+
+/**
+ * Compares attributes to sort.
+ *
+ * @callback AttrMapComparator
+ *
+ * @param   {AttrPair} a
+ * @param   {AttrPair} b
+ * @returns {number}
+ */
+export type AttrMapComparator = (a: AttrPair, b: AttrPair) => number;
 
 /**
  * An attribute name.
@@ -8,6 +30,20 @@
  * @typedef {string} AttrName
  */
 export type AttrName = string;
+
+/**
+ * An HTML attribute name or pattern for sorting.
+ *
+ * @typedef {AttrName|RegExp} AttrOrder
+ */
+export type AttrOrder = AttrName | RegExp;
+
+/**
+ * Pair of an HTML attribute's name and value.
+ *
+ * @typedef {[ AttrName, unknown? ]} AttrPair
+ */
+export type AttrPair = [ AttrName, unknown? ];
 
 /**
  * A filtered attribute value.
@@ -23,50 +59,15 @@ export type AttrName = string;
 export type AttrValue = string | boolean;
 
 /**
- * Map of HTML attribute names and values.
+ * Converts special characters to their corresponding HTML entities.
  *
- * A primitive interpretation of
- * {@link https://developer.mozilla.org/en-US/docs/Web/API/NamedNodeMap `NamedNodeMap`}
- * and {@link https://developer.mozilla.org/en-US/docs/Web/API/Attr `Attr`}.
+ * @callback AttrValueEscaper
  *
- * @typedef {Object<AttrName, unknown>} AttrMap
+ * @param   {string}   value
+ * @param   {AttrName} [name]
+ * @returns {string}
  */
-export type AttrMap = Record<AttrName, unknown>;
-
-/**
- * Pair of an HTML attribute's name and value.
- *
- * @typedef {[ AttrName, unknown? ]} AttrPair
- */
-export type AttrPair = [ AttrName, unknown? ];
-
-/**
- * An HTML attribute value separator.
- *
- * @typedef {string} AttrValueSeparator
- */
-export type AttrValueSeparator = string;
-
-/**
- * Map of HTML attribute names and separator strings.
- *
- * @typedef {Object<AttrName, string>} AttrValueSeparatorMap
- */
-export type AttrValueSeparatorMap = Record<AttrName, AttrValueSeparator>;
-
-/**
- * An HTML attribute name or pattern for sorting.
- *
- * @typedef {AttrName|RegExp} AttrOrder
- */
-export type AttrOrder = AttrName | RegExp;
-
-/**
- * Map of characters to entities.
- *
- * @typedef {Object<string, string>} HTMLCharEscapeMap
- */
-export type HTMLCharEscapeMap = Record<string, string>;
+export type AttrValueEscaper = (value: string, name?: AttrName) => string;
 
 /**
  * Approves, rejects, and parses a value for an HTML attribute.
@@ -88,26 +89,25 @@ export type AttrValueFilter = (value: unknown, name?: AttrName, fallback?: AttrV
 export type AttrValueFilterFallback = AttrValueFilter | AttrValue;
 
 /**
- * Compares attributes to sort.
+ * An HTML attribute value separator.
  *
- * @callback AttrMapComparator
- *
- * @param   {AttrPair} a
- * @param   {AttrPair} b
- * @returns {number}
+ * @typedef {string} AttrValueSeparator
  */
-export type AttrMapComparator = (a: AttrPair, b: AttrPair) => number;
+export type AttrValueSeparator = string;
 
 /**
- * Converts special characters to their corresponding HTML entities.
+ * Map of HTML attribute names and separator strings.
  *
- * @callback AttrValueEscaper
- *
- * @param   {string}   value
- * @param   {AttrName} [name]
- * @returns {string}
+ * @typedef {Object<AttrName, string>} AttrValueSeparatorMap
  */
-export type AttrValueEscaper = (value: string, name?: AttrName) => string;
+export type AttrValueSeparatorMap = Record<AttrName, AttrValueSeparator>;
+
+/**
+ * Map of characters to entities.
+ *
+ * @typedef {Object<string, string>} HTMLCharEscapeMap
+ */
+export type HTMLCharEscapeMap = Record<string, string>;
 
 /**
  * Either null or undefined.
