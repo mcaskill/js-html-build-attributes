@@ -69,7 +69,7 @@ function filterTokens(value)
     value = parseTokens(...value);
 
     if (!value.length) {
-        return null;
+        return false;
     }
 
     return value.join(' ');
