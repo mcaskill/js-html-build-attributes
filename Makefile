@@ -22,11 +22,11 @@ clean: clean-cjs clean-esm
 
 clean-cjs:
 	@echo "Cleaning CJS"
-	@rm -rf dist/cjs/*.js dist/cjs/*.cjs dist/cjs/*.js.map dist/cjs/*.cjs.map dist/cjs/*.d.ts dist/cjs/*.d.cts dist/cjs/*.d.ts.map dist/cjs/*.d.cts.map dist/cjs/lib 2> /dev/null
+	@rm -rf dist/cjs/* 2> /dev/null
 
 clean-esm:
 	@echo "Cleaning ESM"
-	@rm -rf dist/esm/*.js dist/esm/*.mjs dist/esm/*.js.map dist/esm/*.mjs.map dist/esm/*.d.ts dist/esm/*.d.mts dist/esm/*.d.ts.map dist/esm/*.d.mts.map dist/esm/lib 2> /dev/null
+	@rm -rf dist/esm/* 2> /dev/null
 
 lint:
 	@echo "Linting"
