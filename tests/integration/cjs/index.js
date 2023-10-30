@@ -6,9 +6,9 @@ const {
     escapeAttributeValue,
     filterAttributeValue,
 } = require('@mcaskill/html-build-attributes');
-const { filterValue: filterValueA } = require('@mcaskill/html-build-attributes/lib');
-const { filterValue: filterValueB } = require('@mcaskill/html-build-attributes/lib/filter');
-const { filterValue: filterValueC } = require('@mcaskill/html-build-attributes/lib/filter/filter-value.js');
+const { filterValue: filterValueA } = require('@mcaskill/html-build-attributes');
+const { filterValue: filterValueB } = require('@mcaskill/html-build-attributes/value');
+const { filterValue: filterValueC } = require('@mcaskill/html-build-attributes/value/filter-value.js');
 
 if (
     (typeof filterValueA !== 'function') ||

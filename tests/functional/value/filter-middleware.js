@@ -2,10 +2,10 @@ import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
     filterFallback,
-} from '@mcaskill/html-build-attributes/lib/filter/filter-fallback.js';
+} from '@mcaskill/html-build-attributes/value/filter-fallback.js';
 import {
     createFilterMiddleware,
-} from '@mcaskill/html-build-attributes/lib/filter/filter-middleware.js';
+} from '@mcaskill/html-build-attributes/value/filter-middleware.js';
 
 // Generic attribute name.
 const attr = 'test';

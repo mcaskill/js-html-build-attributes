@@ -5,4 +5,4 @@ that validates string tokens similar to [`DOMTokenList#supports`][dom-domtokenli
 
 [concept-supported-tokens]:  https://dom.spec.whatwg.org/#concept-supported-tokens
 [dom-domtokenlist-supports]: https://dom.spec.whatwg.org/#dom-domtokenlist-supports
-[filter-token]:              /src/lib/filter/filter-token.ts
+[filter-token]:              /src/value/filter-token.ts

@@ -2,7 +2,7 @@ import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
     filterStringable,
-} from '@mcaskill/html-build-attributes/lib/filter/filter-stringable.js';
+} from '@mcaskill/html-build-attributes/value/filter-stringable.js';
 
 // Generic attribute name.
 const attr = 'test';

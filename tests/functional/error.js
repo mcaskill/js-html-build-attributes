@@ -2,7 +2,7 @@ import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
     FilterError,
-} from '@mcaskill/html-build-attributes/lib/error.js';
+} from '@mcaskill/html-build-attributes/error.js';
 
 /**
  * Adds common Error class unit tests.

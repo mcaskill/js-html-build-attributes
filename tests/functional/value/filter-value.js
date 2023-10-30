@@ -1,11 +1,11 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
-    filterToken,
-} from '@mcaskill/html-build-attributes/lib/filter/filter-token.js';
+    filterValue,
+} from '@mcaskill/html-build-attributes/value/filter-value.js';
 import {
     FilterError,
-} from '@mcaskill/html-build-attributes/lib/error.js';
+} from '@mcaskill/html-build-attributes/error.js';
 
 // Generic attribute name.
 const attr = 'test';
@@ -14,13 +14,13 @@ const attr = 'test';
 const EOF = Symbol('EOF');
 
 /**
- * Filter Token
+ * Filter Value
  */
 {
-    const test = suite('filterToken');
+    const test = suite('filterValue');
 
     test('should return the default fallback argument', () => {
-        const output = filterToken();
+        const output = filterValue();
 
         assert.is(output, false);
     });
@@ -35,33 +35,38 @@ const EOF = Symbol('EOF');
             (new Date),
             Symbol('foo'),
         ].forEach((input) => {
-            assert.is(filterToken(input, attr, EOF), EOF);
+            assert.is(filterValue(input, attr, EOF), EOF);
         });
     });
 
-    test('should return boolean as string', () => {
-        assert.is(filterToken(true), 'true');
-        assert.is(filterToken(false), 'false');
+    test('should return value intact if boolean', () => {
+        assert.is(filterValue(true), true);
+        assert.is(filterValue(false), false);
+    });
+
+    test('should return boolean as string if name starts with "aria-"', () => {
+        assert.is(filterValue(true, 'aria-hidden'), 'true');
+        assert.is(filterValue(false, 'aria-hidden'), 'false');
     });
 
     test('should return value intact if string', () => {
-        assert.is(filterToken('Hello World'), 'Hello World');
-        assert.is(filterToken('  foo bar '), '  foo bar ');
+        assert.is(filterValue('Hello World'), 'Hello World');
+        assert.is(filterValue('  foo bar '), '  foo bar ');
     });
 
     test('should return BigInt as string', () => {
-        assert.is(filterToken(BigInt('0x1fffffffffffff')), '9007199254740991');
-        assert.is(filterToken(2n), '2');
+        assert.is(filterValue(BigInt('0x1fffffffffffff')), '9007199254740991');
+        assert.is(filterValue(2n), '2');
     });
 
     test('should return number as string', () => {
-        assert.is(filterToken(42), '42');
-        assert.is(filterToken(12.24), '12.24');
-        assert.is(filterToken(-0), '-0');
+        assert.is(filterValue(42), '42');
+        assert.is(filterValue(12.24), '12.24');
+        assert.is(filterValue(-0), '-0');
     });
 
     test('should throw a FilterError if value is not a finite number', () => {
-        const assertion = () => filterToken(1 / 0);
+        const assertion = () => filterValue(1 / 0);
 
         assert.throws(
             assertion,

@@ -1,6 +1,6 @@
 import {
     escapeHTMLEntities,
-} from '../../dist/esm/lib/escape/index.js';
+} from '../../dist/esm/value/index.js';
 
 /**
  * Generates a string of HTML attributes.

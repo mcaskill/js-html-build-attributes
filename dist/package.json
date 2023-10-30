@@ -44,54 +44,44 @@
                 "default": "./cjs/*.cjs"
             }
         },
-        "./lib": {
+        "./attr": {
             "import": {
-                "types": "./esm/lib/index.d.ts",
-                "default": "./esm/lib/index.js"
+                "types": "./esm/attr/index.d.ts",
+                "default": "./esm/attr/index.js"
             },
             "require": {
-                "types": "./cjs/lib/index.d.cts",
-                "default": "./cjs/lib/index.cjs"
+                "types": "./cjs/attr/index.d.cts",
+                "default": "./cjs/attr/index.cjs"
             }
         },
-        "./lib/escape": {
+        "./name": {
             "import": {
-                "types": "./esm/lib/escape/index.d.ts",
-                "default": "./esm/lib/escape/index.js"
+                "types": "./esm/name/index.d.ts",
+                "default": "./esm/name/index.js"
             },
             "require": {
-                "types": "./cjs/lib/escape/index.d.cts",
-                "default": "./cjs/lib/escape/index.cjs"
+                "types": "./cjs/name/index.d.cts",
+                "default": "./cjs/name/index.cjs"
             }
         },
-        "./lib/filter": {
+        "./util": {
             "import": {
-                "types": "./esm/lib/filter/index.d.ts",
-                "default": "./esm/lib/filter/index.js"
+                "types": "./esm/util/index.d.ts",
+                "default": "./esm/util/index.js"
             },
             "require": {
-                "types": "./cjs/lib/filter/index.d.cts",
-                "default": "./cjs/lib/filter/index.cjs"
+                "types": "./cjs/util/index.d.cts",
+                "default": "./cjs/util/index.cjs"
             }
         },
-        "./lib/sort": {
+        "./value": {
             "import": {
-                "types": "./esm/lib/sort/index.d.ts",
-                "default": "./esm/lib/sort/index.js"
+                "types": "./esm/value/index.d.ts",
+                "default": "./esm/value/index.js"
             },
             "require": {
-                "types": "./cjs/lib/sort/index.d.cts",
-                "default": "./cjs/lib/sort/index.cjs"
-            }
-        },
-        "./lib/util": {
-            "import": {
-                "types": "./esm/lib/util/index.d.ts",
-                "default": "./esm/lib/util/index.js"
-            },
-            "require": {
-                "types": "./cjs/lib/util/index.d.cts",
-                "default": "./cjs/lib/util/index.cjs"
+                "types": "./cjs/value/index.d.cts",
+                "default": "./cjs/value/index.cjs"
             }
         }
     },

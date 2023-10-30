@@ -1,6 +1,6 @@
-# Compose Module
+# Compose Attributes Module
 
-> [`@mcaskill/html-build-attributes/lib/compose.js`](/src/lib/compose.ts)
+> [`@mcaskill/html-build-attributes/compose.js`](/src/compose.ts)
 
 The compose module provides the `HTMLBuildAttributes` class which
 essentially behaves like a gloried key/value concatenator.
@@ -29,19 +29,19 @@ new HTMLBuildAttributes(
 
 Its constructor accepts up to three arguments:
 
-* A [_filter_ function](/docs/api.filter.md) that approves, rejects,
-  and mutates a value.
-* An [_escape_ function](/docs/api.escape.md) to encode any special
-  characters in a value.
-* A [_comparator_ function](/docs/api.sort.md) for sorting collections
-  of attributes.
+* An [_attribute value filter_ function](/docs/api.value.filter.md)
+  that approves, rejects, and mutates a value.
+* An [_attribute value escaper_ function](/docs/api.value.escape.md)
+  to encode any special characters in a value.
+* A [_attribute comparator_ function](/docs/api.attr.sort.md)
+  for sorting collections of attributes.
 
 Each function will be bound to the class instance for convenience.
 
 ### Example
 
 ```js
-import { HTMLBuildAttributes } from '@mcaskill/html-build-attributes/lib/compose.js';
+import { HTMLBuildAttributes } from '@mcaskill/html-build-attributes/compose.js';
 import he from 'he';
 
 const htmlBuildAttributes = new HTMLBuildAttributes(

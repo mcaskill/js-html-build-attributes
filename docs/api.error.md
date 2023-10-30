@@ -1,6 +1,6 @@
 # Error Module
 
-> [`@mcaskill/html-build-attributes/lib/error.js`](/src/lib/error.ts)
+> [`@mcaskill/html-build-attributes/error.js`](/src/error.ts)
 
 The error module provides a custom `Error` object meant to be used by
 filter functions. This is mostly useful to catch errors related to

@@ -4,35 +4,35 @@
 
 import {
     HTMLBuildAttributes
-} from './lib/compose.js';
+} from './compose.js';
 
 import {
     escapeHTMLEntities
-} from './lib/escape/escape-html-entities.js';
+} from './value/escape-html-entities.js';
 
 import {
     createFilterCallable
-} from './lib/filter/filter-callable.js';
+} from './value/filter-callable.js';
 
 import {
     createFilterList
-} from './lib/filter/filter-list.js';
+} from './value/filter-list.js';
 
 import {
     createFilterMiddleware
-} from './lib/filter/filter-middleware.js';
+} from './value/filter-middleware.js';
 
 import {
     filterStringable
-} from './lib/filter/filter-stringable.js';
+} from './value/filter-stringable.js';
 
 import {
     filterToken
-} from './lib/filter/filter-token.js';
+} from './value/filter-token.js';
 
 import {
     filterValue
-} from './lib/filter/filter-value.js';
+} from './value/filter-value.js';
 
 const filterList = createFilterList(filterToken, {
     'accept': ',',

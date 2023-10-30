@@ -2,7 +2,7 @@ import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
     isStringable
-} from '@mcaskill/html-build-attributes/lib/util/is-stringable.js';
+} from '@mcaskill/html-build-attributes/util/is-stringable.js';
 
 test('should return `true` when value is stringable', () => {
     [

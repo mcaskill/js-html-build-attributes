@@ -6,9 +6,9 @@ import {
     escapeAttributeValue,
     filterAttributeValue,
 } from '@mcaskill/html-build-attributes';
-import { filterValue as filterValueA } from '@mcaskill/html-build-attributes/lib';
-import { filterValue as filterValueB } from '@mcaskill/html-build-attributes/lib/filter';
-import { filterValue as filterValueC } from '@mcaskill/html-build-attributes/lib/filter/filter-value.js';
+import { filterValue as filterValueA } from '@mcaskill/html-build-attributes';
+import { filterValue as filterValueB } from '@mcaskill/html-build-attributes/value';
+import { filterValue as filterValueC } from '@mcaskill/html-build-attributes/value/filter-value.js';
 
 if (
     (typeof filterValueA !== 'function') ||

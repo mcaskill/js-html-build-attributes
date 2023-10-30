@@ -1,3 +1,4 @@
+export * from './escape-html-entities.js';
 export * from './filter-callable.js';
 export * from './filter-fallback.js';
 export * from './filter-list.js';

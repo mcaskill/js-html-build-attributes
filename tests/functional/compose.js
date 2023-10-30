@@ -2,13 +2,13 @@ import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
     HTMLBuildAttributes
-} from '@mcaskill/html-build-attributes/lib/compose.js';
+} from '@mcaskill/html-build-attributes/compose.js';
 import {
     createFilterList,
     createFilterMiddleware,
     filterToken,
     filterValue,
-} from '@mcaskill/html-build-attributes/lib/filter';
+} from '@mcaskill/html-build-attributes/value';
 
 /**
  * Class Constructor

@@ -13,7 +13,7 @@ import type {
 
 import {
     assertValidAttributeName
-} from './util/is-valid-attribute-name.js';
+} from './name/is-valid-attribute-name.js';
 
 /**
  * HTML attributes composer.
@@ -113,7 +113,7 @@ export class HTMLBuildAttributes
             attrs.sort(this.compareAttributes);
         }
 
-        const composedAttributes = [];
+        const composedAttributes: string[] = [];
 
         for (const [ name, value ] of attrs) {
             const composedAttribute = this.composeAttribute(name, value);

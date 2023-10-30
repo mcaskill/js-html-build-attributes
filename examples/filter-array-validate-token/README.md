@@ -9,4 +9,4 @@ that validates string tokens similar to [`DOMTokenList#add`][dom-domtokenlist-ad
 > 2. If _token_ contains any ASCII whitespace, then throw an "`InvalidCharacterError`" `DOMException`.
 
 [dom-domtokenlist-add]: https://dom.spec.whatwg.org/#dom-domtokenlist-add
-[filter-token]:         /src/lib/filter/filter-token.ts
+[filter-token]:         /src/value/filter-token.ts

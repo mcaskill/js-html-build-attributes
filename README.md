@@ -87,28 +87,28 @@ escapeAttributeValue('{"id":1,"name":"Tim"}');
 
 > `@mcaskill/html-build-attributes/default.js`
 
-A preset instance of [`HTMLBuildAttributes`](/docs/api.compose.md)
+A preset instance of [`HTMLBuildAttributes`](/docs/api.attr.compose.md)
 is available ([featured above](#usage)). It's equiped with basic filters and
 escape of common HTML entities, which should cover most HTML tags.
 
 * **`composeAttribute(name: string, value: unknown): string|null`**
 
-  A reference to [`HTMLBuildAttributes#composeAttribute()`](/docs/api.compose.md#htmlbuildattributescomposeattribute)
+  A reference to [`HTMLBuildAttributes#composeAttribute()`](/docs/api.attr.compose.md#htmlbuildattributescomposeattribute)
   from which you can generate a string of one HTML attribute.
 
 * **`composeAttributes(attributes: object<string, unknown>): string|null`**
 
-  A reference to [`HTMLBuildAttributes#composeAttributes()`](/docs/api.compose.md#htmlbuildattributescomposeattributes)
+  A reference to [`HTMLBuildAttributes#composeAttributes()`](/docs/api.attr.compose.md#htmlbuildattributescomposeattributes)
   from which you can generate a string of many HTML attributes.
 
 * **`escapeAttributeValue(value: string): string`**
 
-  A reference to [`HTMLBuildAttributes#escapeAttributeValue()`](/docs/api.compose.md#htmlbuildattributesescapeattributevalue)
+  A reference to [`HTMLBuildAttributes#escapeAttributeValue()`](/docs/api.attr.compose.md#htmlbuildattributesescapeattributevalue)
   from which you can convert special characters to their corresponding HTML entities.
 
 * **`filterAttributeValue(value: unknown, name?: string): string|boolean|null`**
 
-  A reference to [`HTMLBuildAttributes#filterAttributeValue()`](/docs/api.compose.md#htmlbuildattributesfilterattributevalue)
+  A reference to [`HTMLBuildAttributes#filterAttributeValue()`](/docs/api.attr.compose.md#htmlbuildattributesfilterattributevalue)
   from which you can approve, reject, and parse a value for an HTML attribute.
 
 ## Benchmarks

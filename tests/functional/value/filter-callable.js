@@ -2,7 +2,7 @@ import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
     createFilterCallable
-} from '@mcaskill/html-build-attributes/lib/filter/filter-callable.js';
+} from '@mcaskill/html-build-attributes/value/filter-callable.js';
 
 // Generic attribute name.
 const attr = 'test';

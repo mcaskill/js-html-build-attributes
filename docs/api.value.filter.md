@@ -1,6 +1,6 @@
-# Filter Modules
+# Filter Attribute Value Modules
 
-> [`@mcaskill/html-build-attributes/lib/filter/index.js`](/src/lib/filter/index.ts)
+> [`@mcaskill/html-build-attributes/value/index.js`](/src/value/index.ts)
 
 The filter modules are a collection of functions and function factories
 to approve, reject, and mutate a value.
@@ -41,7 +41,7 @@ to resolve any fallbacks that might be a function:
 ```js
 import {
     filterFallback,
-} from '@mcaskill/html-build-attributes/lib/filter/filter-fallback.js';
+} from '@mcaskill/html-build-attributes/value/filter-fallback.js';
 
 function filterNumber(value, name, fallback = false) {
   if (typeof value === 'number') {
@@ -54,7 +54,7 @@ function filterNumber(value, name, fallback = false) {
 
 ## `createFilterCallable()`
 
-> [`@mcaskill/html-build-attributes/lib/filter/filter-callable.js`](/src/lib/filter/filter-callable.ts)
+> [`@mcaskill/html-build-attributes/value/filter-callable.js`](/src/value/filter-callable.ts)
 
 Creates a [filter function](#attrvaluefilter) that applies the given filter to
 a given value or it's returned result if the value is a function.
@@ -72,7 +72,7 @@ createFilterCallable(
 ```js
 import {
   createFilterCallable
-} from '@mcaskill/html-build-attributes/lib/filter/filter-function.js';
+} from '@mcaskill/html-build-attributes/value/filter-function.js';
 
 const filterNumber = (value, name, fallback = false) => {
   if (typeof value === 'number') {
@@ -101,7 +101,7 @@ filterValueOrClosure(() => 'hello');
 
 ## `createFilterList()`
 
-> [`@mcaskill/html-build-attributes/lib/filter/filter-list.js`](/src/lib/filter/filter-list.ts)
+> [`@mcaskill/html-build-attributes/value/filter-list.js`](/src/value/filter-list.ts)
 
 Creates a [filter function](#attrvaluefilter) that applies a filter to
 each item of the array and concatenates the list into a string separated by
@@ -122,7 +122,7 @@ createFilterList(
 ```js
 import {
   createFilterList
-} from '@mcaskill/html-build-attributes/lib/filter/filter-list.js';
+} from '@mcaskill/html-build-attributes/value/filter-list.js';
 
 const filterTokenList = createFilterList(filterToken, {
   'coords': ',',
@@ -150,7 +150,7 @@ scopedFilterTokenList([ 'a', 'b', 'c' ], 'rel');
 
 ## `createFilterMiddleware()`
 
-> [`@mcaskill/html-build-attributes/lib/filter/filter-middleware.js`](/src/lib/filter/filter-middleware.ts)
+> [`@mcaskill/html-build-attributes/value/filter-middleware.js`](/src/value/filter-middleware.ts)
 
 Creates a [filter function](#attrvaluefilter) from a collection of filters that
 returns the filtered value from the first filter that returns a value.
@@ -168,7 +168,7 @@ createFilterMiddleware(
 ```js
 import {
   createFilterMiddleware
-} from '@mcaskill/html-build-attributes/lib/filter/filter-middleware.js';
+} from '@mcaskill/html-build-attributes/value/filter-middleware.js';
 
 const filterString = (value, name, next) => {
   if (typeof value === 'string') {
@@ -209,7 +209,7 @@ filterByType(true, 'test', 'fallback');
 
 ## `filterFallback()`
 
-> [`@mcaskill/html-build-attributes/lib/filter/filter-fallback.js`](/src/lib/filter/filter-fallback.ts)
+> [`@mcaskill/html-build-attributes/value/filter-fallback.js`](/src/value/filter-fallback.ts)
 
 This function resolves the fallback of an attribute value filter.
 
@@ -232,7 +232,7 @@ filterFallback(
 ```js
 import {
   filterFallback
-} from '@mcaskill/html-build-attributes/lib/filter/filter-fallback.js';
+} from '@mcaskill/html-build-attributes/value/filter-fallback.js';
 
 function filterNumber(value, name, fallback = false) {
   if (typeof value === 'number') {
@@ -254,7 +254,7 @@ filterNumber('hello', 'value', (value, name) => Number.parseInt(value));
 
 ## `filterStringable()`
 
-> [`@mcaskill/html-build-attributes/lib/filter/filter-stringable.js`](/src/lib/filter/filter-stringable.ts)
+> [`@mcaskill/html-build-attributes/value/filter-stringable.js`](/src/value/filter-stringable.ts)
 
 This function converts a value to a string representation or to a JSON string.
 
@@ -282,7 +282,7 @@ If the value is not _nullish_ (`null` or `undefined`) and:
 ```js
 import {
   filterStringable
-} from '@mcaskill/html-build-attributes/lib/filter/filter-stringable.js';
+} from '@mcaskill/html-build-attributes/value/filter-stringable.js';
 
 filterStringable(new Date(2006, 0, 2, 15, 4, 5));
 // → 2006-01-02T20:04:05.000Z
@@ -318,7 +318,7 @@ filterStringable(new StringablePerson(1, 'Tim'));
 
 ## `filterToken()`
 
-> [`@mcaskill/html-build-attributes/lib/filter/filter-token.js`](/src/lib/filter/filter-token.ts)
+> [`@mcaskill/html-build-attributes/value/filter-token.js`](/src/value/filter-token.ts)
 
 This function filters a value that is a string, number, boolean, or `BigInt`.
 
@@ -350,7 +350,7 @@ If the value is:
 
 ## `filterValue()`
 
-> [`@mcaskill/html-build-attributes/lib/filter/filter-value.js`](/src/lib/filter/filter-value.ts)
+> [`@mcaskill/html-build-attributes/value/filter-value.js`](/src/value/filter-value.ts)
 
 This function filters a value that is a string, number, boolean, or `BigInt`.
 

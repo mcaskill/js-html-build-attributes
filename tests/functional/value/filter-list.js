@@ -2,7 +2,7 @@ import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
     createFilterList,
-} from '@mcaskill/html-build-attributes/lib/filter/filter-list.js';
+} from '@mcaskill/html-build-attributes/value/filter-list.js';
 
 // Generic attribute name.
 const attr = 'test';

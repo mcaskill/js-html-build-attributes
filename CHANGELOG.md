@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+Breaking changes:
+
+* Reorganize library:
+  * Un-nest contents of the `lib/` directory/export.
+  * Group attribute (tuple) related modules under `attr/` from `lib/sort/sort-ordered-attributes.js`.
+  * Group name related modules under `name/` from `lib/util/is-valid-attribute-name.js`.
+  * Group value related modules under `value/` from `lib/escape/*.js` and `lib/filter/*.js`.
+  * Rename documentation file names to reflect relation to attribute, name, or value.
+
 ## 0.2.4
 
 * Ensure `README.md` and `LICENSE` files are included in NPM distribution.
@@ -20,7 +31,7 @@
 
 ## 0.2.0
 
-Breaking changes
+Breaking changes:
 
 * Replace underperformant throw/catch pattern with a classic fallback/middleware pattern.
 * Replace `createFilterResolver()` with `createFilterMiddleware()`.
