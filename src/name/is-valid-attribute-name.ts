@@ -4,8 +4,10 @@
 
 /**
  * @type {RegExp} - Match a valid HTML attribute name.
+ *
+ * Supports WHATWG and Vue.js attribute names.
  */
-export const regexValidAttributeName = /^[a-z:_]([a-z0-9:\-_]+)?$/i;
+export const regexValidAttributeName: RegExp = /^[a-z:_@]([a-z0-9:\-_.]+)?$/i;
 
 /**
  * Checks if the attribute name is a valid.
@@ -34,7 +36,7 @@ export function assertValidAttributeName(name: string): void
 {
     if (!isValidAttributeName(name)) {
         throw new TypeError(
-            `'${name}' is not a valid attribute name`
+            `[${name}] is not a valid attribute name`
         );
     }
 }
