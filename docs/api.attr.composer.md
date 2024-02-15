@@ -1,8 +1,8 @@
 # Compose Attributes Module
 
-> [`@mcaskill/html-build-attributes/compose.js`](/src/compose.ts)
+> [`@mcaskill/html-build-attributes/composer.js`](/src/composer.ts)
 
-The compose module provides the `HTMLBuildAttributes` class which
+The compose module provides the `Composer` class which
 essentially behaves like a gloried key/value concatenator.
 
 If the attribute name is an empty string or contains
@@ -15,12 +15,12 @@ a `TypeError` will be thrown.
 > * `AttrValue` is a string or boolean and represents a filtered attribute value.
 > * `T` represents any data type.
 
-## `HTMLBuildAttributes()`
+## `Composer()`
 
 ### Syntax
 
 ```ts
-new HTMLBuildAttributes(
+new Composer(
   attributeValueFilter?: function,
   attributeValueEscaper?: function,
   attributesComparator?: function
@@ -41,24 +41,24 @@ Each function will be bound to the class instance for convenience.
 ### Example
 
 ```js
-import { HTMLBuildAttributes } from '@mcaskill/html-build-attributes/compose.js';
+import { Composer } from '@mcaskill/html-build-attributes/composer.js';
 import he from 'he';
 
-const htmlBuildAttributes = new HTMLBuildAttributes(
+const htmlBuildAttributes = new Composer(
   (value, name) => {/* … */},
   he.escape,
   ([ aName ], [ bName ]) => (aName < bName ? -1 : 1)
 );
 ```
 
-## `HTMLBuildAttributes#composeAttribute()`
+## `Composer#composeAttribute()`
 
 Generate a string of a HTML attribute from a name and value.
 
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.composeAttribute(name: AttrName, value: T): string|null
+Composer.prototype.composeAttribute(name: AttrName, value: T): string|null
 ```
 
 ### Examples
@@ -74,14 +74,14 @@ htmlBuildAttributes.composeAttribute('required', false);
 // → null
 ```
 
-## `HTMLBuildAttributes#composeAttributes()`
+## `Composer#composeAttributes()`
 
 Generate a string of many HTML attributes from a map of names and values.
 
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.composeAttributes(attributes: object<AttrName, T>): string|null
+Composer.prototype.composeAttributes(attributes: object<AttrName, T>): string|null
 ```
 
 ### Example
@@ -101,7 +101,7 @@ console.log(htmlBuildAttributes.composeAttributes(inputAttrs));
 // → type="file" name="avatar" multiple accept="image/png,image/jpeg" data-max-files="3"
 ```
 
-## `HTMLBuildAttributes#compareAttributes()`
+## `Composer#compareAttributes()`
 
 Compares HTML attributes for sorting.
 
@@ -110,8 +110,8 @@ This method is defined from the constructor's `attributesComparator` parameter.
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.compareAttributes: undefined
-HTMLBuildAttributes.prototype.compareAttributes(
+Composer.prototype.compareAttributes: undefined
+Composer.prototype.compareAttributes(
   a: [ AttrName, T ],
   b: [ AttrName, T ]
 ): number
@@ -145,7 +145,7 @@ Object.entries(attributes).sort(htmlBuildAttributes.compareAttributes);
 //   ]
 ```
 
-## `HTMLBuildAttributes#escapeAttributeValue()`
+## `Composer#escapeAttributeValue()`
 
 Convert special characters to their corresponding HTML entities.
 
@@ -154,8 +154,8 @@ This method is defined from the constructor's `attributeValueEscaper` parameter.
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.escapeAttributeValue: undefined
-HTMLBuildAttributes.prototype.escapeAttributeValue(value: string): string
+Composer.prototype.escapeAttributeValue: undefined
+Composer.prototype.escapeAttributeValue(value: string): string
 ```
 
 ### Example
@@ -165,7 +165,7 @@ htmlBuildAttributes.escapeAttributeValue('{"id":1,"name":"Tim"}');
 // → {&quot;id&quot;:1,&quot;name&quot;:&quot;Tim&quot;}
 ```
 
-## `HTMLBuildAttributes#filterAttributeValue()`
+## `Composer#filterAttributeValue()`
 
 Reject, approve, and parse a value for an HTML attribute.
 
@@ -174,8 +174,8 @@ This method is defined from the constructor's `attributeValueFilter` parameter.
 ### Syntax
 
 ```ts
-HTMLBuildAttributes.prototype.filterAttributeValue: undefined
-HTMLBuildAttributes.prototype.filterAttributeValue(value: T, name?: AttrName): AttrValue
+Composer.prototype.filterAttributeValue: undefined
+Composer.prototype.filterAttributeValue(value: T, name?: AttrName): AttrValue
 ```
 
 ### Examples

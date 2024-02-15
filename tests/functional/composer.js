@@ -1,8 +1,8 @@
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 import {
-    HTMLBuildAttributes
-} from '@mcaskill/html-build-attributes/compose.js';
+    Composer
+} from '@mcaskill/html-build-attributes/composer.js';
 import {
     createFilterList,
     createFilterMiddleware,
@@ -16,8 +16,8 @@ import {
 {
     const test = suite('constructor');
 
-    test('should be an instance of HTMLBuildAttributes', () => {
-        assert.instance((new HTMLBuildAttributes), HTMLBuildAttributes);
+    test('should be an instance of Composer', () => {
+        assert.instance((new Composer), Composer);
     });
 
     test('should assign `this` to class property functions', () => {
@@ -55,7 +55,7 @@ import {
             [ filterTradFn, escapeTradFn, compareTradFn ],
             [ filterAnonFn, escapeAnonFn, compareAnonFn ],
         ].forEach(([ filterFn, escapeFn, compareFn ]) => {
-            html = new HTMLBuildAttributes(filterFn, escapeFn, compareFn);
+            html = new Composer(filterFn, escapeFn, compareFn);
 
             html.filterAttributeValue('button', 'type');
             html.escapeAttributeValue('button');
@@ -73,7 +73,7 @@ import {
             [ false, null, 1234 ],
         ].forEach((args) => {
             assert.throws(
-                () => new HTMLBuildAttributes(...args),
+                () => new Composer(...args),
                 (err) => err instanceof TypeError
             );
         });
@@ -143,7 +143,7 @@ import {
     const compareAttrName = ([ a ], [ b ]) => (a > b ? 1 : (a < b ? -1 : 0));
 
     test('should throw a TypeError when attribute name is invalid', () => {
-        const html = new HTMLBuildAttributes;
+        const html = new Composer;
 
         assert.throws(
             () => html.composeAttribute('data~type', 'stub'),
@@ -152,7 +152,7 @@ import {
     });
 
     test('should return `null` if no attributes are composed', () => {
-        const html = new HTMLBuildAttributes;
+        const html = new Composer;
 
         const output = html.composeAttributes({
             'foo': null,
@@ -163,7 +163,7 @@ import {
     });
 
     test('should only compose attributes from `true` and strings', () => {
-        const html = new HTMLBuildAttributes;
+        const html = new Composer;
 
         const output = html.composeAttributes(inputAttrs);
 
@@ -180,7 +180,7 @@ import {
     });
 
     test('should sort, compose, and escape attributes map according to comparator, filter, and escaper', () => {
-        const html = new HTMLBuildAttributes(filterAttributeValue, escapeAttrValue, compareAttrName);
+        const html = new Composer(filterAttributeValue, escapeAttrValue, compareAttrName);
 
         const output = html.composeAttributes(inputAttrs);
 

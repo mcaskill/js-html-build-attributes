@@ -1,4 +1,4 @@
-export * from './compose.js';
+export * from './composer.js';
 export * from './default.js';
 export * from './error.js';
 export * from './attr/index.js';

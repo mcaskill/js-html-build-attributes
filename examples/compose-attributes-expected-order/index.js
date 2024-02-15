@@ -1,5 +1,5 @@
 import {
-    HTMLBuildAttributes,
+    Composer,
     createOrderedAttributesComparator,
     createFilterList,
     createFilterMiddleware,
@@ -70,7 +70,7 @@ const filterAttributeValue = createFilterMiddleware([
     filterStringable,
 ]);
 
-const htmlBuildAttributes = new HTMLBuildAttributes(
+const htmlBuildAttributes = new Composer(
     filterAttributeValue,
     escapeHTMLEntities,
     compareAttributes

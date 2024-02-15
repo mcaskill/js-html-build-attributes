@@ -23,7 +23,7 @@ import {
  *
  * If comparator function is not supplied, attributes will not be sorted.
  */
-export class HTMLBuildAttributes
+export class Composer
 {
     /**
      * @public

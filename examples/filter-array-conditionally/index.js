@@ -1,5 +1,5 @@
 import {
-    HTMLBuildAttributes,
+    Composer,
     escapeHTMLEntities,
 } from '@mcaskill/html-build-attributes';
 
@@ -75,7 +75,7 @@ function filterTokens(value)
     return value.join(' ');
 }
 
-const htmlBuildAttributes = new HTMLBuildAttributes(
+const htmlBuildAttributes = new Composer(
     filterTokens,
     escapeHTMLEntities
 );

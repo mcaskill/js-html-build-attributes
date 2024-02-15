@@ -1,8 +1,8 @@
 import {
-    HTMLBuildAttributes
+    Composer
 } from '@mcaskill/html-build-attributes';
 
-export default class extends HTMLBuildAttributes
+export default class extends Composer
 {
     /**
      * @param   {string} name

@@ -5,6 +5,7 @@
 Breaking changes:
 
 * Add support for Vue.js characters in attribute names (`@.`).
+* Rename `HTMLBuildAttributes` class to `Composer`.
 * Reorganize library:
   * Un-nest contents of the `lib/` directory/export.
   * Group attribute (tuple) related modules under `attr/` from `lib/sort/sort-ordered-attributes.js`.

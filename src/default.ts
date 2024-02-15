@@ -3,8 +3,8 @@
  */
 
 import {
-    HTMLBuildAttributes
-} from './compose.js';
+    Composer
+} from './composer.js';
 
 import {
     escapeHTMLEntities
@@ -49,7 +49,7 @@ const filterMiddleware = createFilterMiddleware([
 
 const filterHTMLAttributeValue = createFilterCallable(filterMiddleware);
 
-const htmlBuildAttributes = new HTMLBuildAttributes(
+const htmlBuildAttributes = new Composer(
     filterHTMLAttributeValue,
     escapeHTMLEntities
 );

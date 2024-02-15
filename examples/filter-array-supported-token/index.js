@@ -1,5 +1,5 @@
 import {
-    HTMLBuildAttributes,
+    Composer,
     createFilterList,
     escapeHTMLEntities,
     filterFallback,
@@ -51,7 +51,7 @@ const filterTokenList = createFilterList((value, name, fallback = false) => {
     return filterFallback(value, name, fallback);
 }, ' ');
 
-const htmlBuildAttributes = new HTMLBuildAttributes(
+const htmlBuildAttributes = new Composer(
     filterTokenList,
     escapeHTMLEntities
 );
